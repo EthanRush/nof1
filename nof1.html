@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://threejs.org/examples/webgl_gpgpu_birds.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>NOF1</title>
+		
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>.lil-gui{--background-color:#1f1f1f;--text-color:#ebebeb;--title-background-color:#111;--title-text-color:#ebebeb;--widget-color:#424242;--hover-color:#4f4f4f;--focus-color:#595959;--number-color:#2cc9ff;--string-color:#a2db3c;--font-size:11px;--input-font-size:11px;--font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;--font-family-mono:Menlo,Monaco,Consolas,"Droid Sans Mono",monospace;--padding:4px;--spacing:4px;--widget-height:20px;--name-width:45%;--slider-knob-width:2px;--slider-input-width:27%;--color-input-width:27%;--slider-input-min-width:45px;--color-input-min-width:45px;--folder-indent:7px;--widget-padding:0 0 0 3px;--widget-border-radius:2px;--checkbox-size:calc(var(--widget-height)*0.75);--scrollbar-width:5px;background-color:var(--background-color);color:var(--text-color);font-family:var(--font-family);font-size:var(--font-size);font-style:normal;font-weight:400;line-height:1;text-align:left;touch-action:manipulation;user-select:none;-webkit-user-select:none}.lil-gui,.lil-gui *{box-sizing:border-box;margin:0;padding:0}.lil-gui.root{display:flex;flex-direction:column;width:var(--width,245px)}.lil-gui.root>.title{background:var(--title-background-color);color:var(--title-text-color)}.lil-gui.root>.children{overflow-x:hidden;overflow-y:auto}.lil-gui.root>.children::-webkit-scrollbar{background:var(--background-color);height:var(--scrollbar-width);width:var(--scrollbar-width)}.lil-gui.root>.children::-webkit-scrollbar-thumb{background:var(--focus-color);border-radius:var(--scrollbar-width)}.lil-gui.force-touch-styles{--widget-height:28px;--padding:6px;--spacing:6px;--font-size:13px;--input-font-size:16px;--folder-indent:10px;--scrollbar-width:7px;--slider-input-min-width:50px;--color-input-min-width:65px}.lil-gui.autoPlace{max-height:100%;position:fixed;right:15px;top:0;z-index:1001}.lil-gui .controller{align-items:center;display:flex;margin:var(--spacing) 0;padding:0 var(--padding)}.lil-gui .controller.disabled{opacity:.5}.lil-gui .controller.disabled,.lil-gui .controller.disabled *{pointer-events:none!important}.lil-gui .controller>.name{flex-shrink:0;line-height:var(--widget-height);min-width:var(--name-width);padding-right:var(--spacing);white-space:pre}.lil-gui .controller .widget{align-items:center;display:flex;min-height:var(--widget-height);position:relative;width:100%}.lil-gui .controller.string input{color:var(--string-color)}.lil-gui .controller.boolean .widget{cursor:pointer}.lil-gui .controller.color .display{border-radius:var(--widget-border-radius);height:var(--widget-height);position:relative;width:100%}.lil-gui .controller.color input[type=color]{cursor:pointer;height:100%;opacity:0;width:100%}.lil-gui .controller.color input[type=text]{flex-shrink:0;font-family:var(--font-family-mono);margin-left:var(--spacing);min-width:var(--color-input-min-width);width:var(--color-input-width)}.lil-gui .controller.option select{max-width:100%;opacity:0;position:absolute;width:100%}.lil-gui .controller.option .display{background:var(--widget-color);border-radius:var(--widget-border-radius);height:var(--widget-height);line-height:var(--widget-height);max-width:100%;overflow:hidden;padding-left:.55em;padding-right:1.75em;pointer-events:none;position:relative;word-break:break-all}.lil-gui .controller.option .display.active{background:var(--focus-color)}.lil-gui .controller.option .display:after{bottom:0;content:"↕";font-family:lil-gui;padding-right:.375em;position:absolute;right:0;top:0}.lil-gui .controller.option .widget,.lil-gui .controller.option select{cursor:pointer}.lil-gui .controller.number input{color:var(--number-color)}.lil-gui .controller.number.hasSlider input{flex-shrink:0;margin-left:var(--spacing);min-width:var(--slider-input-min-width);width:var(--slider-input-width)}.lil-gui .controller.number .slider{background-color:var(--widget-color);border-radius:var(--widget-border-radius);cursor:ew-resize;height:var(--widget-height);overflow:hidden;padding-right:var(--slider-knob-width);touch-action:pan-y;width:100%}.lil-gui .controller.number .slider.active{background-color:var(--focus-color)}.lil-gui .controller.number .slider.active .fill{opacity:.95}.lil-gui .controller.number .fill{border-right:var(--slider-knob-width) solid var(--number-color);box-sizing:content-box;height:100%}.lil-gui-dragging .lil-gui{--hover-color:var(--widget-color)}.lil-gui-dragging *{cursor:ew-resize!important}.lil-gui-dragging.lil-gui-vertical *{cursor:ns-resize!important}.lil-gui .title{--title-height:calc(var(--widget-height) + var(--spacing)*1.25);-webkit-tap-highlight-color:transparent;text-decoration-skip:objects;cursor:pointer;font-weight:600;height:var(--title-height);line-height:calc(var(--title-height) - 4px);outline:none;padding:0 var(--padding)}.lil-gui .title:before{content:"▾";display:inline-block;font-family:lil-gui;padding-right:2px}.lil-gui .title:active{background:var(--title-background-color);opacity:.75}.lil-gui.root>.title:focus{text-decoration:none!important}.lil-gui.closed>.title:before{content:"▸"}.lil-gui.closed>.children{opacity:0;transform:translateY(-7px)}.lil-gui.closed:not(.transition)>.children{display:none}.lil-gui.transition>.children{overflow:hidden;pointer-events:none;transition-duration:.3s;transition-property:height,opacity,transform;transition-timing-function:cubic-bezier(.2,.6,.35,1)}.lil-gui .children:empty:before{content:"Empty";display:block;font-style:italic;height:var(--widget-height);line-height:var(--widget-height);margin:var(--spacing) 0;opacity:.5;padding:0 var(--padding)}.lil-gui.root>.children>.lil-gui>.title{border-width:0;border-bottom:1px solid var(--widget-color);border-left:0 solid var(--widget-color);border-right:0 solid var(--widget-color);border-top:1px solid var(--widget-color);transition:border-color .3s}.lil-gui.root>.children>.lil-gui.closed>.title{border-bottom-color:transparent}.lil-gui+.controller{border-top:1px solid var(--widget-color);margin-top:0;padding-top:var(--spacing)}.lil-gui .lil-gui .lil-gui>.title{border:none}.lil-gui .lil-gui .lil-gui>.children{border:none;border-left:2px solid var(--widget-color);margin-left:var(--folder-indent)}.lil-gui .lil-gui .controller{border:none}.lil-gui input{-webkit-tap-highlight-color:transparent;background:var(--widget-color);border:0;border-radius:var(--widget-border-radius);color:var(--text-color);font-family:var(--font-family);font-size:var(--input-font-size);height:var(--widget-height);outline:none;width:100%}.lil-gui input:disabled{opacity:1}.lil-gui input[type=number],.lil-gui input[type=text]{padding:var(--widget-padding)}.lil-gui input[type=number]:focus,.lil-gui input[type=text]:focus{background:var(--focus-color)}.lil-gui input::-webkit-inner-spin-button,.lil-gui input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.lil-gui input[type=number]{-moz-appearance:textfield}.lil-gui input[type=checkbox]{appearance:none;-webkit-appearance:none;border-radius:var(--widget-border-radius);cursor:pointer;height:var(--checkbox-size);text-align:center;width:var(--checkbox-size)}.lil-gui input[type=checkbox]:checked:before{content:"✓";font-family:lil-gui;font-size:var(--checkbox-size);line-height:var(--checkbox-size)}.lil-gui button{-webkit-tap-highlight-color:transparent;background:var(--widget-color);border:1px solid var(--widget-color);border-radius:var(--widget-border-radius);color:var(--text-color);cursor:pointer;font-family:var(--font-family);font-size:var(--font-size);height:var(--widget-height);line-height:calc(var(--widget-height) - 4px);outline:none;text-align:center;text-transform:none;width:100%}.lil-gui button:active{background:var(--focus-color)}@font-face{font-family:lil-gui;src:url("data:application/font-woff;charset=utf-8;base64,d09GRgABAAAAAAUsAAsAAAAACJwAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAAH4AAADAImwmYE9TLzIAAAGIAAAAPwAAAGBKqH5SY21hcAAAAcgAAAD0AAACrukyyJBnbHlmAAACvAAAAF8AAACEIZpWH2hlYWQAAAMcAAAAJwAAADZfcj2zaGhlYQAAA0QAAAAYAAAAJAC5AHhobXR4AAADXAAAABAAAABMAZAAAGxvY2EAAANsAAAAFAAAACgCEgIybWF4cAAAA4AAAAAeAAAAIAEfABJuYW1lAAADoAAAASIAAAIK9SUU/XBvc3QAAATEAAAAZgAAAJCTcMc2eJxVjbEOgjAURU+hFRBK1dGRL+ALnAiToyMLEzFpnPz/eAshwSa97517c/MwwJmeB9kwPl+0cf5+uGPZXsqPu4nvZabcSZldZ6kfyWnomFY/eScKqZNWupKJO6kXN3K9uCVoL7iInPr1X5baXs3tjuMqCtzEuagm/AAlzQgPAAB4nGNgYRBlnMDAysDAYM/gBiT5oLQBAwuDJAMDEwMrMwNWEJDmmsJwgCFeXZghBcjlZMgFCzOiKOIFAB71Bb8AeJy1kjFuwkAQRZ+DwRAwBtNQRUGKQ8OdKCAWUhAgKLhIuAsVSpWz5Bbkj3dEgYiUIszqWdpZe+Z7/wB1oCYmIoboiwiLT2WjKl/jscrHfGg/pKdMkyklC5Zs2LEfHYpjcRoPzme9MWWmk3dWbK9ObkWkikOetJ554fWyoEsmdSlt+uR0pCJR34b6t/TVg1SY3sYvdf8vuiKrpyaDXDISiegp17p7579Gp3p++y7HPAiY9pmTibljrr85qSidtlg4+l25GLCaS8e6rRxNBmsnERunKbaOObRz7N72ju5vdAjYpBXHgJylOAVsMseDAPEP8LYoUHicY2BiAAEfhiAGJgZWBgZ7RnFRdnVJELCQlBSRlATJMoLV2DK4glSYs6ubq5vbKrJLSbGrgEmovDuDJVhe3VzcXFwNLCOILB/C4IuQ1xTn5FPilBTj5FPmBAB4WwoqAHicY2BkYGAA4sk1sR/j+W2+MnAzpDBgAyEMQUCSg4EJxAEAwUgFHgB4nGNgZGBgSGFggJMhDIwMqEAYAByHATJ4nGNgAIIUNEwmAABl3AGReJxjYAACIQYlBiMGJ3wQAEcQBEV4nGNgZGBgEGZgY2BiAAEQyQWEDAz/wXwGAAsPATIAAHicXdBNSsNAHAXwl35iA0UQXYnMShfS9GPZA7T7LgIu03SSpkwzYTIt1BN4Ak/gKTyAeCxfw39jZkjymzcvAwmAW/wgwHUEGDb36+jQQ3GXGot79L24jxCP4gHzF/EIr4jEIe7wxhOC3g2TMYy4Q7+Lu/SHuEd/ivt4wJd4wPxbPEKMX3GI5+DJFGaSn4qNzk8mcbKSR6xdXdhSzaOZJGtdapd4vVPbi6rP+cL7TGXOHtXKll4bY1Xl7EGnPtp7Xy2n00zyKLVHfkHBa4IcJ2oD3cgggWvt/V/FbDrUlEUJhTn/0azVWbNTNr0Ens8de1tceK9xZmfB1CPjOmPH4kitmvOubcNpmVTN3oFJyjzCvnmrwhJTzqzVj9jiSX911FjeAAB4nG3HMRKCMBBA0f0giiKi4DU8k0V2GWbIZDOh4PoWWvq6J5V8If9NVNQcaDhyouXMhY4rPTcG7jwYmXhKq8Wz+p762aNaeYXom2n3m2dLTVgsrCgFJ7OTmIkYbwIbC6vIB7WmFfAAAA==") format("woff")}@media (pointer:coarse){.lil-gui.allow-touch-styles{--widget-height:28px;--padding:6px;--spacing:6px;--font-size:13px;--input-font-size:16px;--folder-indent:10px;--scrollbar-width:7px;--slider-input-min-width:50px;--color-input-min-width:65px}}@media (hover:hover){.lil-gui .controller.color .display:hover:before{border:1px solid #fff9;border-radius:var(--widget-border-radius);bottom:0;content:" ";display:block;left:0;position:absolute;right:0;top:0}.lil-gui 
+		.controller.option .display.focus{background:var(--focus-color)}.lil-gui .controller.option .widget:hover .display{background:var(--hover-color)}.lil-gui .controller.number .slider:hover{background-color:var(--hover-color)}body:not(.lil-gui-dragging) .lil-gui .title:hover{background:var(--title-background-color);opacity:.85}.lil-gui .title:focus{text-decoration:underline var(--focus-color)}.lil-gui input:hover{background:var(--hover-color)}.lil-gui input:active{background:var(--focus-color)}.lil-gui input[type=checkbox]:focus{box-shadow:inset 0 0 0 1px var(--focus-color)}.lil-gui button:hover{background:var(--hover-color);border-color:var(--hover-color)}.lil-gui button:focus{border-color:var(--focus-color)}}
+		.main-logo{width:80vw;position: absolute;margin: auto;left: 0;right: 0;top:0;bottom:0;text-align: center;z-index: 1;}
+		#nav-dots{z-index:10;position:absolute;margin:auto;top:0;bottom:0;right:5%;justify-content: space-between;height:30vh;display: flex;flex-direction: column;text-align: right;}
+		.dot-text{font-size: 20px;vertical-align: middle; position:sticky;}
+		.dot{font-size: 60px;margin-top: 0;margin-bottom: 0;vertical-align: middle; position:sticky;}
+		.about, .about *{color:#1e1e1e !important;}
+		.testimonials, .testimonials *{color:#E239C1 !important;}
+		.projects, .projects *{color:#D1C03B !important;}
+		.work , .work *{color:#29ABE3 !important;}
+		.text-section{min-height: 100vh; padding-top: 20vh; padding-left: 20vw; padding-right: 20vw;}
+		.dot-wrap{position:sticky;	
+		}
+		.dot-wrap a {
+			text-decoration: none !important;
+		}
+		.dot-text {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.dot-wrap:hover .dot-text {
+    opacity: 1;
+}
+
+		
+		</style>
+		<link type="text/css" rel="stylesheet" href="./main.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">		
+		<style>
+			*{
+				font-family: 'Montserrat';
+				font-weight: 900;
+			}
+			body {
+				background-color: #fff;
+				color: #444;
+			}
+			a {
+				color:#08f;
+			}
+			span, p, ul {
+				font-size: 18px;
+				
+			}
+			h2 {
+				font-size: 96px;
+				line-height: normal;
+			}
+		</style>
+	<style type="text/css">
+@font-face {
+  font-weight: 400;
+  font-style:  normal;
+  font-family: Mont;
+
+  src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Book.woff2') format('woff2');
+}
+
+@font-face {
+  font-weight: 700;
+  font-style:  normal;
+  font-family: circular;
+
+  src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2') format('woff2');
+}</style></head>
+	<body cz-shortcut-listen="true">
+		<div id="nav-dots">
+			<div class="dot-wrap about">
+				<a href="#About">
+				<span class="dot-text">About</span>
+				<span class="dot">&#x2022;</span>
+				</a>
+			</div>
+			<div class="dot-wrap testimonials">
+				<a href="#Testimonials">
+				<span class="dot-text">Testimonials</span>
+				<span class="dot">&#x2022;</span>
+				</a>
+			</div>
+			<div class="dot-wrap projects">
+				<a href="#Projects">
+				<span class="dot-text">Projects</span>
+				<span class="dot">&#x2022;</span>
+				</a>
+			</div>
+			<div class="dot-wrap work">
+				<a href="#Work">
+				<span class="dot-text">Should We Work Together?</span>
+				<span class="dot">&#x2022;</span>
+				</a>
+			</div>
+		</div>
+		<div class="logo" style="text-align: center; vertical-align: middle;">
+			<img class="main-logo" src="./assets/BLACKlOGO_Transp.png">
+		</div>
+		
+
+		<!--
+		TODO: If you're reading this, you may wish to improve this example by
+			- Create a better shading for the birds?
+
+		-->
+
+		<!-- shader for bird's position -->
+		<script id="fragmentShaderPosition" type="x-shader/x-fragment">
+
+			uniform float time;
+			uniform float delta;
+
+			void main()	{
+
+				vec2 uv = gl_FragCoord.xy / resolution.xy;
+				vec4 tmpPos = texture2D( texturePosition, uv );
+				vec3 position = tmpPos.xyz;
+				vec3 velocity = texture2D( textureVelocity, uv ).xyz;
+
+				float phase = tmpPos.w;
+
+				phase = mod( ( phase + delta +
+					length( velocity.xz ) * delta * 3. +
+					max( velocity.y, 0.0 ) * delta * 6. ), 62.83 );
+
+				gl_FragColor = vec4( position + velocity * delta * 15. , phase );
+
+			}
+
+		</script>
+
+		<!-- shader for bird's velocity -->
+		<script id="fragmentShaderVelocity" type="x-shader/x-fragment">
+
+			uniform float time;
+			uniform float testing;
+			uniform float delta; // about 0.016
+			uniform float separationDistance; // 20
+			uniform float alignmentDistance; // 40
+			uniform float cohesionDistance; //
+			uniform float freedomFactor;
+			uniform vec3 predator;
+
+			const float width = resolution.x;
+			const float height = resolution.y;
+
+			const float PI = 3.141592653589793;
+			const float PI_2 = PI * 2.0;
+			// const float VISION = PI * 0.55;
+
+			float zoneRadius = 40.0;
+			float zoneRadiusSquared = 1600.0;
+
+			float separationThresh = 0.45;
+			float alignmentThresh = 0.65;
+
+			const float UPPER_BOUNDS = BOUNDS;
+			const float LOWER_BOUNDS = -UPPER_BOUNDS;
+
+			const float SPEED_LIMIT = 9.0;
+
+			float rand( vec2 co ){
+				return fract( sin( dot( co.xy, vec2(12.9898,78.233) ) ) * 43758.5453 );
+			}
+
+			void main() {
+
+				zoneRadius = separationDistance + alignmentDistance + cohesionDistance;
+				separationThresh = separationDistance / zoneRadius;
+				alignmentThresh = ( separationDistance + alignmentDistance ) / zoneRadius;
+				zoneRadiusSquared = zoneRadius * zoneRadius;
+
+
+				vec2 uv = gl_FragCoord.xy / resolution.xy;
+				vec3 birdPosition, birdVelocity;
+
+				vec3 selfPosition = texture2D( texturePosition, uv ).xyz;
+				vec3 selfVelocity = texture2D( textureVelocity, uv ).xyz;
+
+				float dist;
+				vec3 dir; // direction
+				float distSquared;
+
+				float separationSquared = separationDistance * separationDistance;
+				float cohesionSquared = cohesionDistance * cohesionDistance;
+
+				float f;
+				float percent;
+
+				vec3 velocity = selfVelocity;
+
+				float limit = SPEED_LIMIT;
+
+				dir = predator * UPPER_BOUNDS - selfPosition;
+				dir.z = 0.;
+				// dir.z *= 0.6;
+				dist = length( dir );
+				distSquared = dist * dist;
+
+				float preyRadius = 150.0;
+				float preyRadiusSq = preyRadius * preyRadius;
+
+
+				// move birds away from predator
+				if ( dist < preyRadius ) {
+
+					f = ( distSquared / preyRadiusSq - 1.0 ) * delta * 100.;
+					velocity += normalize( dir ) * f;
+					limit += 5.0;
+				}
+
+
+				// if (testing == 0.0) {}
+				// if ( rand( uv + time ) < freedomFactor ) {}
+
+
+				// Attract flocks to the center
+				vec3 central = vec3( 0., 0., 0. );
+				dir = selfPosition - central;
+				dist = length( dir );
+
+				dir.y *= 2.5;
+				velocity -= normalize( dir ) * delta * 5.;
+
+				for ( float y = 0.0; y < height; y++ ) {
+					for ( float x = 0.0; x < width; x++ ) {
+
+						vec2 ref = vec2( x + 0.5, y + 0.5 ) / resolution.xy;
+						birdPosition = texture2D( texturePosition, ref ).xyz;
+
+						dir = birdPosition - selfPosition;
+						dist = length( dir );
+
+						if ( dist < 0.0001 ) continue;
+
+						distSquared = dist * dist;
+
+						if ( distSquared > zoneRadiusSquared ) continue;
+
+						percent = distSquared / zoneRadiusSquared;
+
+						if ( percent < separationThresh ) { // low
+
+							// Separation - Move apart for comfort
+							f = ( separationThresh / percent - 1.0 ) * delta;
+							velocity -= normalize( dir ) * f;
+
+						} else if ( percent < alignmentThresh ) { // high
+
+							// Alignment - fly the same direction
+							float threshDelta = alignmentThresh - separationThresh;
+							float adjustedPercent = ( percent - separationThresh ) / threshDelta;
+
+							birdVelocity = texture2D( textureVelocity, ref ).xyz;
+
+							f = ( 0.5 - cos( adjustedPercent * PI_2 ) * 0.5 + 0.5 ) * delta;
+							velocity += normalize( birdVelocity ) * f;
+
+						} else {
+
+							// Attraction / Cohesion - move closer
+							float threshDelta = 1.0 - alignmentThresh;
+							float adjustedPercent;
+							if( threshDelta == 0. ) adjustedPercent = 1.;
+							else adjustedPercent = ( percent - alignmentThresh ) / threshDelta;
+
+							f = ( 0.5 - ( cos( adjustedPercent * PI_2 ) * -0.5 + 0.5 ) ) * delta;
+
+							velocity += normalize( dir ) * f;
+
+						}
+
+					}
+
+				}
+
+
+
+				// this make tends to fly around than down or up
+				// if (velocity.y > 0.) velocity.y *= (1. - 0.2 * delta);
+
+				// Speed Limits
+				if ( length( velocity ) > limit ) {
+					velocity = normalize( velocity ) * limit;
+				}
+
+				gl_FragColor = vec4( velocity, 1.0 );
+
+			}
+
+		</script>
+
+		<script type="x-shader/x-vertex" id="birdVS">
+
+			attribute vec2 reference;
+			attribute float birdVertex;
+
+			attribute vec3 birdColor;
+
+			uniform sampler2D texturePosition;
+			uniform sampler2D textureVelocity;
+
+			varying vec4 vColor;
+			varying float z;
+
+			uniform float time;
+
+			void main() {
+
+				vec4 tmpPos = texture2D( texturePosition, reference );
+				vec3 pos = tmpPos.xyz;
+				vec3 velocity = normalize(texture2D( textureVelocity, reference ).xyz);
+
+				vec3 newPosition = position;
+
+				if ( birdVertex == 4.0 || birdVertex == 7.0 ) {
+					// flap wings
+					newPosition.y = sin( tmpPos.w ) * 5.;
+				}
+
+				newPosition = mat3( modelMatrix ) * newPosition;
+
+
+				velocity.z *= -1.;
+				float xz = length( velocity.xz );
+				float xyz = 1.;
+				float x = sqrt( 1. - velocity.y * velocity.y );
+
+				float cosry = velocity.x / xz;
+				float sinry = velocity.z / xz;
+
+				float cosrz = x / xyz;
+				float sinrz = velocity.y / xyz;
+
+				mat3 maty =  mat3(
+					cosry, 0, -sinry,
+					0    , 1, 0     ,
+					sinry, 0, cosry
+
+				);
+
+				mat3 matz =  mat3(
+					cosrz , sinrz, 0,
+					-sinrz, cosrz, 0,
+					0     , 0    , 1
+				);
+
+				newPosition =  maty * matz * newPosition;
+				newPosition += pos;
+
+				z = newPosition.z;
+
+				vColor = vec4( birdColor, 1.0 );
+				gl_Position = projectionMatrix *  viewMatrix  * vec4( newPosition, 1.0 );
+			}
+
+		</script>
+
+		<!-- bird geometry shader -->
+		<script type="x-shader/x-fragment" id="birdFS">
+
+			varying vec4 vColor;
+			varying float z;
+
+			uniform vec3 color;
+
+			void main() {
+				// Fake colors for now
+				float z2 = 0.2 + ( 1000. - z ) / 1000. * vColor.x;
+				gl_FragColor = vec4( z2, z2, z2, 1. );
+
+			}
+
+		</script>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+					"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+
+			import * as THREE from 'three';
+
+
+			import { GPUComputationRenderer } from 'three/addons/misc/GPUComputationRenderer.js';
+
+			/* TEXTURE WIDTH FOR SIMULATION */
+			const WIDTH = 32;
+
+			const BIRDS = WIDTH * WIDTH;
+
+			// Custom Geometry - using 3 triangles each. No UVs, no normals currently.
+			class BirdGeometry extends THREE.BufferGeometry {
+
+				constructor() {
+
+					super();
+
+					const trianglesPerBird = 3;
+					const triangles = BIRDS * trianglesPerBird;
+					const points = triangles * 3;
+
+					const vertices = new THREE.BufferAttribute( new Float32Array( points * 3 ), 3 );
+					const birdColors = new THREE.BufferAttribute( new Float32Array( points * 3 ), 3 );
+					const references = new THREE.BufferAttribute( new Float32Array( points * 2 ), 2 );
+					const birdVertex = new THREE.BufferAttribute( new Float32Array( points ), 1 );
+
+					this.setAttribute( 'position', vertices );
+					this.setAttribute( 'birdColor', birdColors );
+					this.setAttribute( 'reference', references );
+					this.setAttribute( 'birdVertex', birdVertex );
+
+					// this.setAttribute( 'normal', new Float32Array( points * 3 ), 3 );
+
+
+					let v = 0;
+
+					function verts_push() {
+
+						for ( let i = 0; i < arguments.length; i ++ ) {
+
+							vertices.array[ v ++ ] = arguments[ i ];
+
+						}
+
+					}
+
+					const wingsSpan = 20;
+
+					for ( let f = 0; f < BIRDS; f ++ ) {
+
+						// Body
+
+						verts_push(
+							0, - 0, - 20,
+							0, 4, - 20,
+							0, 0, 30
+						);
+
+						// Wings
+
+						verts_push(
+							0, 0, - 15,
+							- wingsSpan, 0, 0,
+							0, 0, 15
+						);
+
+						verts_push(
+							0, 0, 15,
+							wingsSpan, 0, 0,
+							0, 0, - 15
+						);
+
+					}
+
+					for ( let v = 0; v < triangles * 3; v ++ ) {
+
+						const triangleIndex = ~ ~ ( v / 3 );
+						const birdIndex = ~ ~ ( triangleIndex / trianglesPerBird );
+						const x = ( birdIndex % WIDTH ) / WIDTH;
+						const y = ~ ~ ( birdIndex / WIDTH ) / WIDTH;
+
+						const c = new THREE.Color(
+							0x666666 +
+							~ ~ ( v / 9 ) / BIRDS * 0x666666
+						);
+
+						birdColors.array[ v * 3 + 0 ] = c.r;
+						birdColors.array[ v * 3 + 1 ] = c.g;
+						birdColors.array[ v * 3 + 2 ] = c.b;
+
+						references.array[ v * 2 ] = x;
+						references.array[ v * 2 + 1 ] = y;
+
+						birdVertex.array[ v ] = v % 9;
+
+					}
+
+					this.scale( 0.2, 0.2, 0.2 );
+
+				}
+
+			}
+
+			//
+
+			let container;
+			let camera, scene, renderer;
+			let mouseX = 0, mouseY = 0;
+
+			let windowHalfX = window.innerWidth / 2;
+			let windowHalfY = window.innerHeight / 2;
+
+			const BOUNDS = 800, BOUNDS_HALF = BOUNDS / 2;
+
+			let last = performance.now();
+
+			let gpuCompute;
+			let velocityVariable;
+			let positionVariable;
+			let positionUniforms;
+			let velocityUniforms;
+			let birdUniforms;
+
+			init();
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.prepend( container );
+
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
+				camera.position.z = 350;
+
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0xffffff );
+				scene.fog = new THREE.Fog( 0xffffff, 100, 1000 );
+
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setAnimationLoop( animate );
+				container.appendChild( renderer.domElement );
+
+				initComputeRenderer();
+
+				
+
+				container.style.touchAction = 'none';
+				container.addEventListener( 'pointermove', onPointerMove );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+				//const gui = new GUI();
+
+
+				const effectController = {
+					separation: 20.0,
+					alignment: 20.0,
+					cohesion: 20.0,
+					freedom: 0.75
+				};
+
+				const valuesChanger = function () {
+
+					velocityUniforms[ 'separationDistance' ].value = effectController.separation;
+					velocityUniforms[ 'alignmentDistance' ].value = effectController.alignment;
+					velocityUniforms[ 'cohesionDistance' ].value = effectController.cohesion;
+					velocityUniforms[ 'freedomFactor' ].value = effectController.freedom;
+
+				};
+
+				valuesChanger();
+
+				/*gui.add( effectController, 'separation', 0.0, 100.0, 1.0 ).onChange( valuesChanger );
+				gui.add( effectController, 'alignment', 0.0, 100, 0.001 ).onChange( valuesChanger );
+				gui.add( effectController, 'cohesion', 0.0, 100, 0.025 ).onChange( valuesChanger );
+				gui.close();*/
+
+				initBirds();
+
+			}
+
+			function initComputeRenderer() {
+
+				gpuCompute = new GPUComputationRenderer( WIDTH, WIDTH, renderer );
+
+				const dtPosition = gpuCompute.createTexture();
+				const dtVelocity = gpuCompute.createTexture();
+				fillPositionTexture( dtPosition );
+				fillVelocityTexture( dtVelocity );
+
+				velocityVariable = gpuCompute.addVariable( 'textureVelocity', document.getElementById( 'fragmentShaderVelocity' ).textContent, dtVelocity );
+				positionVariable = gpuCompute.addVariable( 'texturePosition', document.getElementById( 'fragmentShaderPosition' ).textContent, dtPosition );
+
+				gpuCompute.setVariableDependencies( velocityVariable, [ positionVariable, velocityVariable ] );
+				gpuCompute.setVariableDependencies( positionVariable, [ positionVariable, velocityVariable ] );
+
+				positionUniforms = positionVariable.material.uniforms;
+				velocityUniforms = velocityVariable.material.uniforms;
+
+				positionUniforms[ 'time' ] = { value: 0.0 };
+				positionUniforms[ 'delta' ] = { value: 0.0 };
+				velocityUniforms[ 'time' ] = { value: 1.0 };
+				velocityUniforms[ 'delta' ] = { value: 0.0 };
+				velocityUniforms[ 'testing' ] = { value: 1.0 };
+				velocityUniforms[ 'separationDistance' ] = { value: 1.0 };
+				velocityUniforms[ 'alignmentDistance' ] = { value: 1.0 };
+				velocityUniforms[ 'cohesionDistance' ] = { value: 1.0 };
+				velocityUniforms[ 'freedomFactor' ] = { value: 1.0 };
+				velocityUniforms[ 'predator' ] = { value: new THREE.Vector3() };
+				velocityVariable.material.defines.BOUNDS = BOUNDS.toFixed( 2 );
+
+				velocityVariable.wrapS = THREE.RepeatWrapping;
+				velocityVariable.wrapT = THREE.RepeatWrapping;
+				positionVariable.wrapS = THREE.RepeatWrapping;
+				positionVariable.wrapT = THREE.RepeatWrapping;
+
+				const error = gpuCompute.init();
+
+				if ( error !== null ) {
+
+					console.error( error );
+
+				}
+
+			}
+
+			function initBirds() {
+
+				const geometry = new BirdGeometry();
+
+				// For Vertex and Fragment
+				birdUniforms = {
+					'color': { value: new THREE.Color( 0xff2200 ) },
+					'texturePosition': { value: null },
+					'textureVelocity': { value: null },
+					'time': { value: 1.0 },
+					'delta': { value: 0.0 }
+				};
+
+				// THREE.ShaderMaterial
+				const material = new THREE.ShaderMaterial( {
+					uniforms: birdUniforms,
+					vertexShader: document.getElementById( 'birdVS' ).textContent,
+					fragmentShader: document.getElementById( 'birdFS' ).textContent,
+					side: THREE.DoubleSide
+
+				} );
+
+				const birdMesh = new THREE.Mesh( geometry, material );
+				birdMesh.rotation.y = Math.PI / 2;
+				birdMesh.matrixAutoUpdate = false;
+				birdMesh.updateMatrix();
+
+				scene.add( birdMesh );
+
+			}
+
+			function fillPositionTexture( texture ) {
+
+				const theArray = texture.image.data;
+
+				for ( let k = 0, kl = theArray.length; k < kl; k += 4 ) {
+
+					const x = Math.random() * BOUNDS - BOUNDS_HALF;
+					const y = Math.random() * BOUNDS - BOUNDS_HALF;
+					const z = Math.random() * BOUNDS - BOUNDS_HALF;
+
+					theArray[ k + 0 ] = x;
+					theArray[ k + 1 ] = y;
+					theArray[ k + 2 ] = z;
+					theArray[ k + 3 ] = 1;
+
+				}
+
+			}
+
+			function fillVelocityTexture( texture ) {
+
+				const theArray = texture.image.data;
+
+				for ( let k = 0, kl = theArray.length; k < kl; k += 4 ) {
+
+					const x = Math.random() - 0.5;
+					const y = Math.random() - 0.5;
+					const z = Math.random() - 0.5;
+
+					theArray[ k + 0 ] = x * 10;
+					theArray[ k + 1 ] = y * 10;
+					theArray[ k + 2 ] = z * 10;
+					theArray[ k + 3 ] = 1;
+
+				}
+
+			}
+
+			function onWindowResize() {
+
+				windowHalfX = window.innerWidth / 2;
+				windowHalfY = window.innerHeight / 2;
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function onPointerMove( event ) {
+
+				if ( event.isPrimary === false ) return;
+
+				mouseX = event.clientX - windowHalfX;
+				mouseY = event.clientY - windowHalfY;
+
+			}
+
+			//
+
+			function animate() {
+
+				render();
+
+			}
+
+			function render() {
+
+				const now = performance.now();
+				let delta = ( now - last ) / 1000;
+
+				if ( delta > 1 ) delta = 1; // safety cap on large deltas
+				last = now;
+
+				positionUniforms[ 'time' ].value = now;
+				positionUniforms[ 'delta' ].value = delta;
+				velocityUniforms[ 'time' ].value = now;
+				velocityUniforms[ 'delta' ].value = delta;
+				birdUniforms[ 'time' ].value = now;
+				birdUniforms[ 'delta' ].value = delta;
+
+				velocityUniforms[ 'predator' ].value.set( 0.5 * mouseX / windowHalfX, - 0.5 * mouseY / windowHalfY, 0 );
+
+				mouseX = 10000;
+				mouseY = 10000;
+
+				gpuCompute.compute();
+
+				birdUniforms[ 'texturePosition' ].value = gpuCompute.getCurrentRenderTarget( positionVariable ).texture;
+				birdUniforms[ 'textureVelocity' ].value = gpuCompute.getCurrentRenderTarget( velocityVariable ).texture;
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+		<script>
+			window.addEventListener("load", (event) => {
+			const navbar = document.querySelector('#nav-dots');
+			const canvas = document.querySelector('canvas');
+			const current_dist = navbar.offsetTop;
+			const sticky = navbar.offsetTop;
+
+			
+			window.onscroll = function() {
+			navbar.style.marginTop = 0;
+			console.log("sticky",sticky - 100);
+			console.log("yoff", window.pageYOffset);
+
+
+			
+				navbar.style.top = (pageYOffset + current_dist) + "px";
+			
+}
+});
+		</script>
+		
+	<div id="About" class="text-section about">
+		<h2>About</h2>
+		<p>Led by designer and organizational psychologist Chatham Sullivan N of 1 solves people challenges for some of the world’s most influential brands and institutions. </p>
+
+			<p>	Our studio tackles a wide range of challenges, but most clients pull us in for organizational design, change, talent, and culture. We innovate in all things related to people. </p>
+			
+				<p>	Curious about what it’s like to work with N of 1, check out what people say about us - <span class="testimonials">pink</span>. </p>
+			
+					<p>	Wondering what kinds of projects we do - <span class="projects">yellow</span>.
+			 
+						<p>	If your not sure whether N of 1 is the right fit - <span class="work">blue</span></p>
+	</div>
+
+	<div id="Testimonials" class="text-section testimonials">
+		<h2>Testimonials</h2>
+		<p>Neil Alger, Head of Talent Development at Google School for Leaders “Working  with  Chatham  is  like  opening  a  door  that  you  were  always  curious about but just assumed was permanently locked. Don't be surprised if the world around you no longer looks like it once did.”</p>
+		<p>	"I thought the work was utterly fabulous... I was shown it under conditions of inviolable secrecy, but they had spotted things about us so quickly and astutely, I was stunningly impressed.” - Rory Sutherland Vice Chairman of Ogilvy & Mather </p>
+		<p>   “Chatham has been a true thought provoker and partner to us on our journey. Thank you Chatham - from the bottom of my heart.” - Michael Kassan, Founder and CEO Media Link </p>
+		<p> “Today was truly one of the highest points of my life at PayPal. Seeing individuals form  such  powerful  teams  was  amazing...  the  quality  of  their  output  was  mind-boggling.” -  David Marcus, former CEO PayPal </p>
+		<p> “I  just  saw  the  output.  It  is  fabulous.  So  much  rings  true  and  so  much  feels actionable. I want our people across India to really HEAR THIS!” - Kunal Jeswani, Ogivy Chief Executive, India </p>
+		<p> “Chatham  is  not  a  traditional  consultant,  but  a  transformative  guide.  He  has helped  reframe  my  way  of  thinking  around  work  to  be  product-centric  and obsessively focused on user experience. There is no one better equipped to help individuals and companies to find their way.”  - Michael Ehret, Ph.D. Head of Global Talent Management at Johnson & Johnson </p>
+		<p> "The insights I gleaned from my work with Chatham were truly transformational.  To say that he challenged my dominant thinking and inspired my team to step  into an entirely new set of possibilities is a massive understatement. The  takeaways  are  actively  shaping  how  we're  reframing  our  whole  scale  initiative.” - Christina Wire, VP Global Operations at YouTube</p>
+		<p> “Working with Nof1  feels like it’s me but on steroids” - Charlotte Tansill, Head of Strategy, Ogilvy </p>
+		<p> “I can already see the new perspectives from Edge moving into the business. In a short period of time you and your team have had a powerful impact on the 12 of us and by extension the teams we lead.” - Jill Anderson, Chief Operating Officer, Southern California Edison </p>
+		<p> “Chatham  has  been  a  partner  to  me  at  two  different  companies.  He  is  an amazing  strategic  thinker,  facilitator,  and  organizational  design  consultant.  I'm always  impressed  with  his  creativity  and  expertise  in  helping  us  optimize  our large-scale change initiatives.” - Jean-Rene Zetrenne, Chief People Officer, UTA</p>
+	</div>
+
+	<div id="Projects" class="text-section projects">
+		<h2>Projects</h2>
+		<p>Notable projects: At Udemy, developed ‘the box,’ a system to set clear performance expectations, fairly evaluate contributions, and reward accordingly. For Google, a talent agency for VPs as part of  the  Google  School  for  Leaders.  At  Ogilvy,  designed  and  led Project  X,  an  experiment  that  broke  up  business-as-usual,  where small  teams  generated  big  ideas  for  Starbucks,  Southwest,  and Footlocker; established top team governance and enterprise operating  principles  for  Johnson  &  Johnson’s  med  tech  sector.  At Leo Burnett, designed a concept for faster, cheaper, and happier creative teams; developed ‘Concept to Code’ (C2C) for PayPal, an executive experience to accelerate innovation. At Wharton, designed  and  managed  executive  education  program  for  Dubai World,  the  largest  at  that  point  in  Wharton  history;  launched  an unconventional leadership campaign at J&J Pharmaceutical, focused on boosting leaders’ impact bringing differentiated drugs to  market  quickly;  led  an  8-year  executive  development  program at  Southern  California  Edison,  preparing  half  the  executive  team, including the CEO.</p>
+	</div>
+
+	<div id="Work" class="text-section work">
+		<h2>Should We Work Together</h2>
+		<p>Read the following. If they resonate, let’s talk. </p>
+		<ul>
+			<li>
+				You’re looking for a bold, fast-moving partner who prioritizes action over slides and deliverables—an alternative to the canned solutions of big firms. 
+			</li>
+			<li>
+				You want a partner with charisma. Someone that  gets  you  excited  and  stimulates  your thinking,  but  also  a  partner  serious  enough tell you the truth without fear or favor. 
+			</li>
+			<li>
+				You  care  about  the  quality  and  impact,  not just  checking  the  box  or  looking  good.  You want to make a difference and get sh*t done
+			</li>
+		</ul>
+	</dvi>
+</body></html>
