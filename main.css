@@ -2,12 +2,12 @@
 		.controller.option .display.focus{background:var(--focus-color)}.lil-gui .controller.option .widget:hover .display{background:var(--hover-color)}.lil-gui .controller.number .slider:hover{background-color:var(--hover-color)}body:not(.lil-gui-dragging) .lil-gui .title:hover{background:var(--title-background-color);opacity:.85}.lil-gui .title:focus{text-decoration:underline var(--focus-color)}.lil-gui input:hover{background:var(--hover-color)}.lil-gui input:active{background:var(--focus-color)}.lil-gui input[type=checkbox]:focus{box-shadow:inset 0 0 0 1px var(--focus-color)}.lil-gui button:hover{background:var(--hover-color);border-color:var(--hover-color)}.lil-gui button:focus{border-color:var(--focus-color)}}
 		.main-logo{width:80vw;margin: auto;left: 0;right: 0;top:0;bottom:0;text-align: center;z-index: 1;}
 		#nav-dots{z-index:10;position:absolute;margin:auto;top:0;bottom:0;right:5%;justify-content: space-between;height:30vh;display: flex;flex-direction: column;text-align: right;}
-		.dot-text{font-size: 20px;vertical-align: middle; position:sticky;}
-		.dot{font-size: 60px;margin-top: 0;margin-bottom: 0;vertical-align: middle; position:sticky;}
-		.about, .about *{color:#1e1e1e !important;}
-		.testimonials, .testimonials *{color:#E239C1 !important;}
+		.dot-text{font-size: 30px;vertical-align: middle; position:sticky;line-height: 1;}
+		.dot{font-size: 120px; line-height: 1; margin-top: 0;margin-bottom: 0;vertical-align: middle; position:sticky;}
+		.about, .about *{color:#FF40FF !important;}
+		.testimonials, .testimonials *{color:#68DDAA !important;}
 		.projects, .projects *{color:#D1C03B !important;}
-		.work , .work *{color:#29ABE3 !important;}
+		.talk{color:#FF2500 !important;}
 		.dot-wrap{position:sticky;	
 		}
 		.dot-wrap a {
@@ -18,7 +18,7 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-.dot-wrap:hover .dot-text {
+.dot-wrap:hover .dot-text, .dot-wrap.mimic-hover .dot-text {
     opacity: 1;
 }
 
@@ -27,14 +27,17 @@
 	background-color: rgba(255,255,255,.8);
 	backdrop-filter: blur(3px); 
 	-webkit-backdrop-filter: blur(3px);
-	box-shadow: 0 4px 30px rgba(0,0,0,.1)
+	box-shadow: 0 4px 30px rgba(0,0,0,.1);
+	border: 1px solid rgba(255,255,255,.15);
 }
 
 
-
+/*
 #About.text-section {
 	background-color: rgba(186, 242, 236, 0.8);
-}
+	border: 1px solid rgba(186, 242, 236,.15);
+
+}*/
 
 h2{
 	margin-top: clamp(12px, 2vh, 24px);
@@ -44,7 +47,6 @@ h2{
 body {
 	margin: 0;
 	background-color: #000;
-	color: #fff;
 	font-size: 13px;
 	line-height: 24px;
 	overscroll-behavior: none;
@@ -55,7 +57,6 @@ body {
 	vertical-align: middle;
 }
 a {
-	color: #ff0;
 	text-decoration: none;
 }
 

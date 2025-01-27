@@ -7,11 +7,11 @@
 		<link type="text/css" rel="stylesheet" href="./main.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">		
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->		
 		<style>
 			*{
-				font-family: 'Montserrat';
-				font-weight: 900;
+				font-family: 'Helvetica';
+				font-weight: 500;
 			}
 			body {
 				background-color: #fff;
@@ -21,7 +21,8 @@
 				color:#08f;
 			}
 			span, p, ul {
-				font-size: 18px;
+				font-size: 2rem;
+				line-height: 1.2;
 				
 			}
 			h2 {
@@ -59,15 +60,15 @@
 				<span class="dot">&#x2022;</span>
 				</a>
 			</div>
-			<div class="dot-wrap projects">
+			<!-- <div class="dot-wrap projects">
 				<a href="#Projects">
 				<span class="dot-text">Projects</span>
 				<span class="dot">&#x2022;</span>
 				</a>
-			</div>
-			<div class="dot-wrap work">
-				<a href="#Work">
-				<span class="dot-text">Should We Work Together?</span>
+			</div> -->
+			<div class="dot-wrap talk">
+				<a href="#Talk">
+				<span class="dot-text">Let's Talk</span>
 				<span class="dot">&#x2022;</span>
 				</a>
 			</div>
@@ -732,8 +733,7 @@
 			
 			window.onscroll = function() {
 			navbar.style.marginTop = 0;
-			console.log("sticky",sticky - 100);
-			console.log("yoff", window.pageYOffset);
+			
 
 
 			
@@ -742,52 +742,179 @@
 }
 });
 		</script>
+
+<script>
+	function isInViewport(element) {
+		const rect = element.getBoundingClientRect();
+		return rect.top >= 0 && rect.left >= 0 &&
+			rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+			rect.right <= (window.innerWidth || document.documentElement.clientWidth);
+	}
+	
+	function isMostlyInViewport(element) {
+		const rect = element.getBoundingClientRect();
 		
-	<div id="About" class="text-section about">
-		<h2>About</h2>
-		<p>Led by designer and organizational psychologist Chatham Sullivan N of 1 solves people challenges for some of the world’s most influential brands and institutions. </p>
+		// Calculate the visible area of the element
+		const elementHeight = rect.height;
+		const visibleHeight = Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top);
+		
+		// Consider the element in the viewport if at least 50% of it is visible
+		const visibilityThreshold = 0.4; // 42% visible
+		const visibilityRatio = visibleHeight / elementHeight;
+	
+		return visibilityRatio >= visibilityThreshold;
+	}
 
-			<p>	Our studio tackles a wide range of challenges, but most clients pull us in for organizational design, change, talent, and culture. We innovate in all things related to people. </p>
-			
-				<p>	Curious about what it’s like to work with N of 1, check out what people say about us - <span class="testimonials">pink</span>. </p>
-			
-					<p>	Wondering what kinds of projects we do - <span class="projects">yellow</span>.
-			 
-						<p>	If your not sure whether N of 1 is the right fit - <span class="work">blue</span></p>
+	
+	
+	// Enable scrolling for the second div when it comes into view
+	function checkScrollEnable() {
+		const secondDiv = document.getElementById('viewport');
+		const aboutDiv = document.getElementById('About');
+		//const projectsDiv = document.getElementById('Projects');
+		const testDiv = document.getElementById('Testimonials');
+		const talkDiv = document.getElementById('Talk');
+		/*
+		if (isInViewport(secondDiv)) {
+			secondDiv.style.overflow = 'scroll'; // Enable scrolling
+		} else {
+			document.querySelector('.dot-wrap.about').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.work').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.testimonials').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
+		}*/
+
+		/*
+else if (isMostlyInViewport(projectsDiv)) {
+			document.querySelector('.dot-wrap.about').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.talk').classList.remove('mimic-hover');
+			//document.querySelector('.dot-wrap.testimonials').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.projects').classList.add('mimic-hover');
+		}
+		*/
+		
+	
+		if (isMostlyInViewport(aboutDiv) ) {
+			document.querySelector('.dot-wrap.about').classList.add('mimic-hover');
+			document.querySelector('.dot-wrap.talk').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.testimonials').classList.remove('mimic-hover');
+			//document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
+		} 
+		else if (isMostlyInViewport(testDiv) ) {
+			document.querySelector('.dot-wrap.about').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.talk').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.testimonials').classList.add('mimic-hover');
+			//document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
+		} 
+		 else if (isMostlyInViewport(talkDiv) ) {
+			document.querySelector('.dot-wrap.about').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.talk').classList.add('mimic-hover');
+			document.querySelector('.dot-wrap.testimonials').classList.remove('mimic-hover');
+			//document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
+		}
+		else {
+			document.querySelector('.dot-wrap.about').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.work').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.testimonials').classList.remove('mimic-hover');
+			document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
+		}
+	}
+	
+	// Event listener for scrolling
+	window.addEventListener('scroll', checkScrollEnable);
+	
+	// Call the check function initially in case the page is loaded with the second div already in view
+	checkScrollEnable();
+	</script>
+		
+	<div id="About" class="text-section">
+		<p>N of 1 is a design studio led by Chatham 
+			Sullivan specializing in <span class="about">people innovation.</span>
+		</p>		
+		<p>
+			Our mission is to bring the same bold, creative 
+			problem-solving and high-impact design 
+			typically reserved for groundbreaking 
+			products and services in the market to the 
+			heart of every organization: its people. 
+		</p>
+	
 	</div>
 
-	<div id="Testimonials" class="text-section testimonials">
-		<h2>Testimonials</h2>
-		<p>Neil Alger, Head of Talent Development at Google School for Leaders “Working  with  Chatham  is  like  opening  a  door  that  you  were  always  curious about but just assumed was permanently locked. Don't be surprised if the world around you no longer looks like it once did.”</p>
-		<p>	"I thought the work was utterly fabulous... I was shown it under conditions of inviolable secrecy, but they had spotted things about us so quickly and astutely, I was stunningly impressed.” - Rory Sutherland Vice Chairman of Ogilvy & Mather </p>
-		<p>   “Chatham has been a true thought provoker and partner to us on our journey. Thank you Chatham - from the bottom of my heart.” - Michael Kassan, Founder and CEO Media Link </p>
-		<p> “Today was truly one of the highest points of my life at PayPal. Seeing individuals form  such  powerful  teams  was  amazing...  the  quality  of  their  output  was  mind-boggling.” -  David Marcus, former CEO PayPal </p>
-		<p> “I  just  saw  the  output.  It  is  fabulous.  So  much  rings  true  and  so  much  feels actionable. I want our people across India to really HEAR THIS!” - Kunal Jeswani, Ogivy Chief Executive, India </p>
-		<p> “Chatham  is  not  a  traditional  consultant,  but  a  transformative  guide.  He  has helped  reframe  my  way  of  thinking  around  work  to  be  product-centric  and obsessively focused on user experience. There is no one better equipped to help individuals and companies to find their way.”  - Michael Ehret, Ph.D. Head of Global Talent Management at Johnson & Johnson </p>
-		<p> "The insights I gleaned from my work with Chatham were truly transformational.  To say that he challenged my dominant thinking and inspired my team to step  into an entirely new set of possibilities is a massive understatement. The  takeaways  are  actively  shaping  how  we're  reframing  our  whole  scale  initiative.” - Christina Wire, VP Global Operations at YouTube</p>
-		<p> “Working with Nof1  feels like it’s me but on steroids” - Charlotte Tansill, Head of Strategy, Ogilvy </p>
-		<p> “I can already see the new perspectives from Edge moving into the business. In a short period of time you and your team have had a powerful impact on the 12 of us and by extension the teams we lead.” - Jill Anderson, Chief Operating Officer, Southern California Edison </p>
-		<p> “Chatham  has  been  a  partner  to  me  at  two  different  companies.  He  is  an amazing  strategic  thinker,  facilitator,  and  organizational  design  consultant.  I'm always  impressed  with  his  creativity  and  expertise  in  helping  us  optimize  our large-scale change initiatives.” - Jean-Rene Zetrenne, Chief People Officer, UTA</p>
+	<div id="Testimonials">
+		<div class="text-section">
+			<p>Neil Alger, Head of Talent Development  
+				<span class="testimonials">Google School</span> for Leaders 
+			</p>
+			<p>Working  with  Chatham  is  like  opening  a  door 
+				that  you  were  always  curious  about  but  just 
+				assumed was permanently locked. Don't be 
+				surprised  if  the  world  around  you  no  longer 
+				looks like it once did.</p>
+
+		</div>
+		<div class="text-section">
+			<p>Rory Sutherland Vice Chairman 
+				<span class="testimonials">Ogilvy</span> 
+			</p>
+			<p>I was shown it under conditions of 
+				inviolable secrecy, but they had spotted 
+				things about us so quickly and astutely, I 
+				was stunningly impressed. I thought the 
+				work was utterly fabulous.  </p>
+
+		</div>
+		
+
+		<div class="text-section">
+			<p>Christina Wire VP Global Operations 
+				<span class="testimonials">YouTube</span> 
+			</p>
+			<p>"The insights I gleaned from our work were 
+				transformational. To say that Chatham challenged 
+				my dominant thinking and inspired my team to step 
+				into an entirely new set of possibilities is a massive 
+				understatement. The takeaways are actively shaping 
+				how we're reframing our whole scale initiative.”</p>
+
+		</div>
+
+		<div class="text-section">
+			<p>Michael Ehret, Head of Global Talent  
+				<span class="testimonials">Johnson & Johnson</span>
+			</p>
+			<p>“Chatham  is  not  a  traditional  consultant,  but  a 
+				transformative  guide.  He  has  helped  reframe 
+				my way of thinking around work to be product-
+				centric and obsessively focused on our 
+				people’s  experience.  There  is  no  one  better 
+				equipped  to  help  individuals  and  companies  to 
+				find their way.”</p>
+
+		</div>
 	</div>
 
-	<div id="Projects" class="text-section projects">
+	<!--<div id="Projects" class="text-section projects">
 		<h2>Projects</h2>
 		<p>Notable projects: At Udemy, developed ‘the box,’ a system to set clear performance expectations, fairly evaluate contributions, and reward accordingly. For Google, a talent agency for VPs as part of  the  Google  School  for  Leaders.  At  Ogilvy,  designed  and  led Project  X,  an  experiment  that  broke  up  business-as-usual,  where small  teams  generated  big  ideas  for  Starbucks,  Southwest,  and Footlocker; established top team governance and enterprise operating  principles  for  Johnson  &  Johnson’s  med  tech  sector.  At Leo Burnett, designed a concept for faster, cheaper, and happier creative teams; developed ‘Concept to Code’ (C2C) for PayPal, an executive experience to accelerate innovation. At Wharton, designed  and  managed  executive  education  program  for  Dubai World,  the  largest  at  that  point  in  Wharton  history;  launched  an unconventional leadership campaign at J&J Pharmaceutical, focused on boosting leaders’ impact bringing differentiated drugs to  market  quickly;  led  an  8-year  executive  development  program at  Southern  California  Edison,  preparing  half  the  executive  team, including the CEO.</p>
-	</div>
+	</div> -->
 
-	<div id="Work" class="text-section work">
-		<h2>Should We Work Together</h2>
-		<p>Read the following. If they resonate, let’s talk. </p>
+	<div id="Talk" class="text-section">
+		<p>If you're looking for...  </p>
 		<ul>
 			<li>
-				You’re looking for a bold, fast-moving partner who prioritizes action over slides and deliverables—an alternative to the canned solutions of big firms. 
+				a fast-moving partner who prioritizes action and progress over slides and roadmaps
 			</li>
 			<li>
-				You want a partner with charisma. Someone that  gets  you  excited  and  stimulates  your thinking,  but  also  a  partner  serious  enough tell you the truth without fear or favor. 
+				an alternative to the canned solutions of big firms.			
 			</li>
 			<li>
-				You  care  about  the  quality  and  impact,  not just  checking  the  box  or  looking  good.  You want to make a difference and get sh*t done
+				a partner with charisma. Someone that gets and speaks to you honestly without fear or favor.
 			</li>
 		</ul>
+		<p>
+			And you care about quality and impact, not just checking the box. You want to make a difference?
+			<br><span class="talk">Let's talk.</span>
+		</p>
 	</dvi>
 </body></html>
