@@ -4,10 +4,10 @@
 		#nav-dots{z-index:10;position:absolute;margin:auto;top:0;bottom:0;right:5%;justify-content: space-between;height:30vh;display: flex;flex-direction: column;text-align: right;}
 		.dot-text{font-size: 30px;vertical-align: middle; position:sticky;line-height: 1;}
 		.dot{font-size: 120px; line-height: 1; margin-top: 0;margin-bottom: 0;vertical-align: middle; position:sticky;}
-		.about, .about *{color:#FF40FF !important;}
-		.testimonials, .testimonials *{color:#68DDAA !important;}
-		.projects, .projects *{color:#D1C03B !important;}
-		.talk{color:#FF2500 !important;}
+		.about, .about *{color:black !important;}
+		.testimonials, .testimonials *{color: black !important;}
+		.projects, .projects *{color:black !important;}
+		.talk, .talk *{color:black !important;}
 		.dot-wrap{position:sticky;	
 		}
 		.dot-wrap a {
@@ -23,13 +23,31 @@
 }
 
 .text-section{  
-	margin-top: 20vh; padding:1.3rem; border-radius: 15px; margin-left: 20vw; margin-right: 20vw; 
+	position: relative;
+	margin-top: 20vh; padding:1.3rem; 
+	border-radius: 15px; 
+	margin-left: 10vw; 
+	padding-left: 10vw;
+	padding-right: 10vw;
+	margin-right: 10vw; 
 	background-color: rgba(255,255,255,.8);
+	/*mask: linear-gradient(to right, transparent, black, transparent);
 	backdrop-filter: blur(3px); 
-	-webkit-backdrop-filter: blur(3px);
+	-webkit-backdrop-filter: blur(3px);*/
 	box-shadow: 0 4px 30px rgba(0,0,0,.1);
 	border: 1px solid rgba(255,255,255,.15);
 }
+
+.text-section::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+ 
+	background: white;
+	mask: linear-gradient(to right, transparent, black 35%, transparent);
+	backdrop-filter: blur(2px);
+ }
 
 
 /*
