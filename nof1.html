@@ -1,780 +1,824 @@
 <!DOCTYPE html>
 <!-- saved from url=(0051)https://threejs.org/examples/webgl_gpgpu_birds.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>NOF1</title>
-		
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="./main.css">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->		
-		<style>
-			*{
-				font-family: 'Helvetica';
-				font-weight: 500;
-			}
-			body {
-				background-color: #fff;
-				color: #444;
-			}
-			a {
-				color:#08f;
-			}
-			span, p, ul {
-				font-size: 2rem;
-				line-height: 1.2;
-				
-			}
-			h2 {
-				font-size: 96px;
-				line-height: normal;
-			}
-		</style>
-	<style type="text/css">
-@font-face {
-  font-weight: 400;
-  font-style:  normal;
-  font-family: Mont;
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>NOF1</title>
 
-  src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Book.woff2') format('woff2');
-}
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <link type="text/css" rel="stylesheet" href="./main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->
+    <style>
+      * {
+        font-family: "Helvetica";
+        font-weight: 500;
+      }
+      body {
+        background-color: #fff;
+        color: #444;
+      }
+      a {
+        color: #08f;
+      }
+      span,
+      p,
+      ul {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+      h2 {
+        font-size: 96px;
+        line-height: normal;
+      }
+    </style>
+    <style type="text/css">
+      @font-face {
+        font-weight: 400;
+        font-style: normal;
+        font-family: Mont;
 
-@font-face {
-  font-weight: 700;
-  font-style:  normal;
-  font-family: circular;
+        src: url("chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Book.woff2")
+          format("woff2");
+      }
 
-  src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2') format('woff2');
-}</style></head>
-	<body cz-shortcut-listen="true">
-		<div id="nav-dots">
-			<div class="dot-wrap about">
-				<a href="#About">
-				<span class="dot-text">About</span>
-				<span class="dot">&#x2022;</span>
-				</a>
-			</div>
-			<div class="dot-wrap testimonials">
-				<a href="#Testimonials">
-				<span class="dot-text">Testimonials</span>
-				<span class="dot">&#x2022;</span>
-				</a>
-			</div>
-			<!-- <div class="dot-wrap projects">
+      @font-face {
+        font-weight: 700;
+        font-style: normal;
+        font-family: circular;
+
+        src: url("chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2")
+          format("woff2");
+      }
+    </style>
+  </head>
+  <body cz-shortcut-listen="true">
+    <!-- <div id="nav-dots">
+      <div class="dot-wrap about">
+        <a href="#About">
+          <span class="dot-text">About</span>
+          <span class="dot">&#x2022;</span>
+        </a>
+      </div>
+      <div class="dot-wrap testimonials">
+        <a href="#Testimonials">
+          <span class="dot-text">Testimonials</span>
+          <span class="dot">&#x2022;</span>
+        </a>
+      </div>
+      <!- <div class="dot-wrap projects">
 				<a href="#Projects">
 				<span class="dot-text">Projects</span>
 				<span class="dot">&#x2022;</span>
 				</a>
-			</div> -->
-			<div class="dot-wrap talk">
-				<a href="#Talk">
-				<span class="dot-text">Let's Talk</span>
-				<span class="dot">&#x2022;</span>
-				</a>
-			</div>
+			</div> ->
+      <div class="dot-wrap talk">
+        <a href="#Talk">
+          <span class="dot-text">Let's Talk</span>
+          <span class="dot">&#x2022;</span>
+        </a>
+      </div>
+    </div> -->
+    <div class="logo" style="text-align: center; align-content: center">
+      <img class="main-logo" src="./assets/BLACKlOGO_Transp.png" />
+	  <div id="ticker-container">
+		<div id="ticker">
+		  N of 1 is a design studio led by Chatham Sullivan specializing in
+		  <span class="about">people innovation.</span>
+		  Our mission is to bring the same bold, creative problem-solving and
+		  high-impact design typically reserved for groundbreaking products and
+		  services in the market to the heart of every organization: its people.
+  
+		  <span>
+			Neil Alger, Head of Talent Development
+			<span class="testimonials">Google School</span> for Leaders Working
+			with Chatham is like opening a door that you were always curious about
+			but just assumed was permanently locked. Don't be surprised if the
+			world around you no longer looks like it once did.
+		  </span>
+		  <span>
+			Rory Sutherland Vice Chairman
+			<span class="testimonials">Ogilvy</span>
+			I was shown it under conditions of inviolable secrecy, but they had
+			spotted things about us so quickly and astutely, I was stunningly
+			impressed. I thought the work was utterly fabulous.
+		  </span>
+  
+		  <span>
+			Christina Wire VP Global Operations
+			<span class="testimonials">YouTube</span>
+			"The insights I gleaned from our work were transformational. To say
+			that Chatham challenged my dominant thinking and inspired my team to
+			step into an entirely new set of possibilities is a massive
+			understatement. The takeaways are actively shaping how we're reframing
+			our whole scale initiative.”
+		  </span>
+  
+		  <span>
+			Michael Ehret, Head of Global Talent
+			<span class="testimonials">Johnson & Johnson</span>
+			“Chatham is not a traditional consultant, but a transformative guide.
+			He has helped reframe my way of thinking around work to be product-
+			centric and obsessively focused on our people's experience. There is
+			no one better equipped to help individuals and companies to find their
+			way.”
+		  </span>
+  
+		  <!--<div id="Projects" class="text-section projects">
+		  <h2>Projects</h2>
+		  <p>Notable projects: At Udemy, developed ‘the box,’ a system to set clear performance expectations, fairly evaluate contributions, and reward accordingly. For Google, a talent agency for VPs as part of  the  Google  School  for  Leaders.  At  Ogilvy,  designed  and  led Project  X,  an  experiment  that  broke  up  business-as-usual,  where small  teams  generated  big  ideas  for  Starbucks,  Southwest,  and Footlocker; established top team governance and enterprise operating  principles  for  Johnson  &  Johnson’s  med  tech  sector.  At Leo Burnett, designed a concept for faster, cheaper, and happier creative teams; developed ‘Concept to Code’ (C2C) for PayPal, an executive experience to accelerate innovation. At Wharton, designed  and  managed  executive  education  program  for  Dubai World,  the  largest  at  that  point  in  Wharton  history;  launched  an unconventional leadership campaign at J&J Pharmaceutical, focused on boosting leaders’ impact bringing differentiated drugs to  market  quickly;  led  an  8-year  executive  development  program at  Southern  California  Edison,  preparing  half  the  executive  team, including the CEO.</p>
+		  </div> -->
+  
+		  If you're looking for... a fast-moving partner who prioritizes action
+		  and progress over slides and roadmaps an alternative to the canned
+		  solutions of big firms. a partner with charisma. Someone that gets and
+		  speaks to you honestly without fear or favor. And you care about quality
+		  and impact, not just checking the box. You want to make a difference?
+		  <span class="talk">Let's talk.</span>
 		</div>
-		<div class="logo" style="text-align: center; align-content:center">
-			<img class="main-logo" src="./assets/BLACKlOGO_Transp.png">
-		</div>
-		
+	  </div>
+    </div>
 
-		<!--
+    <!--
 		TODO: If you're reading this, you may wish to improve this example by
 			- Create a better shading for the birds?
 
 		-->
 
-		<!-- shader for bird's position -->
-		<script id="fragmentShaderPosition" type="x-shader/x-fragment">
+    <!-- shader for bird's position -->
+    <script id="fragmentShaderPosition" type="x-shader/x-fragment">
 
-			uniform float time;
-			uniform float delta;
+      uniform float time;
+      uniform float delta;
 
-			void main()	{
+      void main()	{
 
-				vec2 uv = gl_FragCoord.xy / resolution.xy;
-				vec4 tmpPos = texture2D( texturePosition, uv );
-				vec3 position = tmpPos.xyz;
-				vec3 velocity = texture2D( textureVelocity, uv ).xyz;
+      	vec2 uv = gl_FragCoord.xy / resolution.xy;
+      	vec4 tmpPos = texture2D( texturePosition, uv );
+      	vec3 position = tmpPos.xyz;
+      	vec3 velocity = texture2D( textureVelocity, uv ).xyz;
 
-				float phase = tmpPos.w;
+      	float phase = tmpPos.w;
 
-				phase = mod( ( phase + delta +
-					length( velocity.xz ) * delta * 3. +
-					max( velocity.y, 0.0 ) * delta * 6. ), 62.83 );
+      	phase = mod( ( phase + delta +
+      		length( velocity.xz ) * delta * 3. +
+      		max( velocity.y, 0.0 ) * delta * 6. ), 62.83 );
 
-				gl_FragColor = vec4( position + velocity * delta * 15. , phase );
+      	gl_FragColor = vec4( position + velocity * delta * 15. , phase );
 
-			}
+      }
+    </script>
 
-		</script>
+    <!-- shader for bird's velocity -->
+    <script id="fragmentShaderVelocity" type="x-shader/x-fragment">
 
-		<!-- shader for bird's velocity -->
-		<script id="fragmentShaderVelocity" type="x-shader/x-fragment">
+      uniform float time;
+      uniform float testing;
+      uniform float delta; // about 0.016
+      uniform float separationDistance; // 20
+      uniform float alignmentDistance; // 40
+      uniform float cohesionDistance; //
+      uniform float freedomFactor;
+      uniform vec3 predator;
 
-			uniform float time;
-			uniform float testing;
-			uniform float delta; // about 0.016
-			uniform float separationDistance; // 20
-			uniform float alignmentDistance; // 40
-			uniform float cohesionDistance; //
-			uniform float freedomFactor;
-			uniform vec3 predator;
+      const float width = resolution.x;
+      const float height = resolution.y;
 
-			const float width = resolution.x;
-			const float height = resolution.y;
+      const float PI = 3.141592653589793;
+      const float PI_2 = PI * 2.0;
+      // const float VISION = PI * 0.55;
 
-			const float PI = 3.141592653589793;
-			const float PI_2 = PI * 2.0;
-			// const float VISION = PI * 0.55;
+      float zoneRadius = 40.0;
+      float zoneRadiusSquared = 1600.0;
 
-			float zoneRadius = 40.0;
-			float zoneRadiusSquared = 1600.0;
+      float separationThresh = 0.45;
+      float alignmentThresh = 0.65;
 
-			float separationThresh = 0.45;
-			float alignmentThresh = 0.65;
+      const float UPPER_BOUNDS = BOUNDS;
+      const float LOWER_BOUNDS = -UPPER_BOUNDS;
 
-			const float UPPER_BOUNDS = BOUNDS;
-			const float LOWER_BOUNDS = -UPPER_BOUNDS;
+      const float SPEED_LIMIT = 5.0;
 
-			const float SPEED_LIMIT = 5.0;
+      float rand( vec2 co ){
+      	return fract( sin( dot( co.xy, vec2(12.9898,78.233) ) ) * 43758.5453 );
+      }
 
-			float rand( vec2 co ){
-				return fract( sin( dot( co.xy, vec2(12.9898,78.233) ) ) * 43758.5453 );
-			}
+      void main() {
 
-			void main() {
+      	zoneRadius = separationDistance + alignmentDistance + cohesionDistance;
+      	separationThresh = separationDistance / zoneRadius;
+      	alignmentThresh = ( separationDistance + alignmentDistance ) / zoneRadius;
+      	zoneRadiusSquared = zoneRadius * zoneRadius;
 
-				zoneRadius = separationDistance + alignmentDistance + cohesionDistance;
-				separationThresh = separationDistance / zoneRadius;
-				alignmentThresh = ( separationDistance + alignmentDistance ) / zoneRadius;
-				zoneRadiusSquared = zoneRadius * zoneRadius;
 
+      	vec2 uv = gl_FragCoord.xy / resolution.xy;
+      	vec3 birdPosition, birdVelocity;
 
-				vec2 uv = gl_FragCoord.xy / resolution.xy;
-				vec3 birdPosition, birdVelocity;
+      	vec3 selfPosition = texture2D( texturePosition, uv ).xyz;
+      	vec3 selfVelocity = texture2D( textureVelocity, uv ).xyz;
 
-				vec3 selfPosition = texture2D( texturePosition, uv ).xyz;
-				vec3 selfVelocity = texture2D( textureVelocity, uv ).xyz;
+      	float dist;
+      	vec3 dir; // direction
+      	float distSquared;
 
-				float dist;
-				vec3 dir; // direction
-				float distSquared;
+      	float separationSquared = separationDistance * separationDistance;
+      	float cohesionSquared = cohesionDistance * cohesionDistance;
 
-				float separationSquared = separationDistance * separationDistance;
-				float cohesionSquared = cohesionDistance * cohesionDistance;
+      	float f;
+      	float percent;
 
-				float f;
-				float percent;
+      	vec3 velocity = selfVelocity;
 
-				vec3 velocity = selfVelocity;
+      	float limit = SPEED_LIMIT;
 
-				float limit = SPEED_LIMIT;
+      	dir = predator * UPPER_BOUNDS - selfPosition;
+      	dir.z = 0.;
+      	// dir.z *= 0.6;
+      	dist = length( dir );
+      	distSquared = dist * dist;
 
-				dir = predator * UPPER_BOUNDS - selfPosition;
-				dir.z = 0.;
-				// dir.z *= 0.6;
-				dist = length( dir );
-				distSquared = dist * dist;
+      	float preyRadius = 150.0;
+      	float preyRadiusSq = preyRadius * preyRadius;
 
-				float preyRadius = 150.0;
-				float preyRadiusSq = preyRadius * preyRadius;
 
+      	// move birds away from predator
+      	if ( dist < preyRadius ) {
 
-				// move birds away from predator
-				if ( dist < preyRadius ) {
+      		f = ( distSquared / preyRadiusSq - 1.0 ) * delta * 100.;
+      		velocity += normalize( dir ) * f;
+      		limit += 5.0;
+      	}
 
-					f = ( distSquared / preyRadiusSq - 1.0 ) * delta * 100.;
-					velocity += normalize( dir ) * f;
-					limit += 5.0;
-				}
 
+      	// if (testing == 0.0) {}
+      	// if ( rand( uv + time ) < freedomFactor ) {}
 
-				// if (testing == 0.0) {}
-				// if ( rand( uv + time ) < freedomFactor ) {}
 
+      	// Attract flocks to the center
+      	vec3 central = vec3( 0., 0., 0. );
+      	dir = selfPosition - central;
+      	dist = length( dir );
 
-				// Attract flocks to the center
-				vec3 central = vec3( 0., 0., 0. );
-				dir = selfPosition - central;
-				dist = length( dir );
+      	dir.y *= 2.5;
+      	velocity -= normalize( dir ) * delta * 5.;
 
-				dir.y *= 2.5;
-				velocity -= normalize( dir ) * delta * 5.;
+      	for ( float y = 0.0; y < height; y++ ) {
+      		for ( float x = 0.0; x < width; x++ ) {
 
-				for ( float y = 0.0; y < height; y++ ) {
-					for ( float x = 0.0; x < width; x++ ) {
+      			vec2 ref = vec2( x + 0.5, y + 0.5 ) / resolution.xy;
+      			birdPosition = texture2D( texturePosition, ref ).xyz;
 
-						vec2 ref = vec2( x + 0.5, y + 0.5 ) / resolution.xy;
-						birdPosition = texture2D( texturePosition, ref ).xyz;
+      			dir = birdPosition - selfPosition;
+      			dist = length( dir );
 
-						dir = birdPosition - selfPosition;
-						dist = length( dir );
+      			if ( dist < 0.0001 ) continue;
 
-						if ( dist < 0.0001 ) continue;
+      			distSquared = dist * dist;
 
-						distSquared = dist * dist;
+      			if ( distSquared > zoneRadiusSquared ) continue;
 
-						if ( distSquared > zoneRadiusSquared ) continue;
+      			percent = distSquared / zoneRadiusSquared;
 
-						percent = distSquared / zoneRadiusSquared;
+      			if ( percent < separationThresh ) { // low
 
-						if ( percent < separationThresh ) { // low
+      				// Separation - Move apart for comfort
+      				f = ( separationThresh / percent - 1.0 ) * delta;
+      				velocity -= normalize( dir ) * f;
 
-							// Separation - Move apart for comfort
-							f = ( separationThresh / percent - 1.0 ) * delta;
-							velocity -= normalize( dir ) * f;
+      			} else if ( percent < alignmentThresh ) { // high
 
-						} else if ( percent < alignmentThresh ) { // high
+      				// Alignment - fly the same direction
+      				float threshDelta = alignmentThresh - separationThresh;
+      				float adjustedPercent = ( percent - separationThresh ) / threshDelta;
 
-							// Alignment - fly the same direction
-							float threshDelta = alignmentThresh - separationThresh;
-							float adjustedPercent = ( percent - separationThresh ) / threshDelta;
+      				birdVelocity = texture2D( textureVelocity, ref ).xyz;
 
-							birdVelocity = texture2D( textureVelocity, ref ).xyz;
+      				f = ( 0.5 - cos( adjustedPercent * PI_2 ) * 0.5 + 0.5 ) * delta;
+      				velocity += normalize( birdVelocity ) * f;
 
-							f = ( 0.5 - cos( adjustedPercent * PI_2 ) * 0.5 + 0.5 ) * delta;
-							velocity += normalize( birdVelocity ) * f;
+      			} else {
 
-						} else {
+      				// Attraction / Cohesion - move closer
+      				float threshDelta = 1.0 - alignmentThresh;
+      				float adjustedPercent;
+      				if( threshDelta == 0. ) adjustedPercent = 1.;
+      				else adjustedPercent = ( percent - alignmentThresh ) / threshDelta;
 
-							// Attraction / Cohesion - move closer
-							float threshDelta = 1.0 - alignmentThresh;
-							float adjustedPercent;
-							if( threshDelta == 0. ) adjustedPercent = 1.;
-							else adjustedPercent = ( percent - alignmentThresh ) / threshDelta;
+      				f = ( 0.5 - ( cos( adjustedPercent * PI_2 ) * -0.5 + 0.5 ) ) * delta;
 
-							f = ( 0.5 - ( cos( adjustedPercent * PI_2 ) * -0.5 + 0.5 ) ) * delta;
+      				velocity += normalize( dir ) * f;
 
-							velocity += normalize( dir ) * f;
+      			}
 
-						}
+      		}
 
-					}
+      	}
 
-				}
 
 
+      	// this make tends to fly around than down or up
+      	// if (velocity.y > 0.) velocity.y *= (1. - 0.2 * delta);
 
-				// this make tends to fly around than down or up
-				// if (velocity.y > 0.) velocity.y *= (1. - 0.2 * delta);
+      	// Speed Limits
+      	if ( length( velocity ) > limit ) {
+      		velocity = normalize( velocity ) * limit;
+      	}
 
-				// Speed Limits
-				if ( length( velocity ) > limit ) {
-					velocity = normalize( velocity ) * limit;
-				}
+      	gl_FragColor = vec4( velocity, 1.0 );
 
-				gl_FragColor = vec4( velocity, 1.0 );
+      }
+    </script>
 
-			}
+    <script type="x-shader/x-vertex" id="birdVS">
 
-		</script>
+      attribute vec2 reference;
+      attribute float birdVertex;
 
-		<script type="x-shader/x-vertex" id="birdVS">
+      attribute vec3 birdColor;
 
-			attribute vec2 reference;
-			attribute float birdVertex;
+      uniform sampler2D texturePosition;
+      uniform sampler2D textureVelocity;
 
-			attribute vec3 birdColor;
+      varying vec4 vColor;
+      varying float z;
 
-			uniform sampler2D texturePosition;
-			uniform sampler2D textureVelocity;
+      uniform float time;
 
-			varying vec4 vColor;
-			varying float z;
+      void main() {
 
-			uniform float time;
+      	vec4 tmpPos = texture2D( texturePosition, reference );
+      	vec3 pos = tmpPos.xyz;
+      	vec3 velocity = normalize(texture2D( textureVelocity, reference ).xyz);
 
-			void main() {
+      	vec3 newPosition = position;
 
-				vec4 tmpPos = texture2D( texturePosition, reference );
-				vec3 pos = tmpPos.xyz;
-				vec3 velocity = normalize(texture2D( textureVelocity, reference ).xyz);
+      	if ( birdVertex == 4.0 || birdVertex == 7.0 ) {
+      		// flap wings
+      		newPosition.y = sin( tmpPos.w ) * 5.;
+      	}
 
-				vec3 newPosition = position;
+      	newPosition = mat3( modelMatrix ) * newPosition;
 
-				if ( birdVertex == 4.0 || birdVertex == 7.0 ) {
-					// flap wings
-					newPosition.y = sin( tmpPos.w ) * 5.;
-				}
 
-				newPosition = mat3( modelMatrix ) * newPosition;
+      	velocity.z *= -1.;
+      	float xz = length( velocity.xz );
+      	float xyz = 1.;
+      	float x = sqrt( 1. - velocity.y * velocity.y );
 
+      	float cosry = velocity.x / xz;
+      	float sinry = velocity.z / xz;
 
-				velocity.z *= -1.;
-				float xz = length( velocity.xz );
-				float xyz = 1.;
-				float x = sqrt( 1. - velocity.y * velocity.y );
+      	float cosrz = x / xyz;
+      	float sinrz = velocity.y / xyz;
 
-				float cosry = velocity.x / xz;
-				float sinry = velocity.z / xz;
+      	mat3 maty =  mat3(
+      		cosry, 0, -sinry,
+      		0    , 1, 0     ,
+      		sinry, 0, cosry
 
-				float cosrz = x / xyz;
-				float sinrz = velocity.y / xyz;
+      	);
 
-				mat3 maty =  mat3(
-					cosry, 0, -sinry,
-					0    , 1, 0     ,
-					sinry, 0, cosry
+      	mat3 matz =  mat3(
+      		cosrz , sinrz, 0,
+      		-sinrz, cosrz, 0,
+      		0     , 0    , 1
+      	);
 
-				);
+      	newPosition =  maty * matz * newPosition;
+      	newPosition += pos;
 
-				mat3 matz =  mat3(
-					cosrz , sinrz, 0,
-					-sinrz, cosrz, 0,
-					0     , 0    , 1
-				);
+      	z = newPosition.z;
 
-				newPosition =  maty * matz * newPosition;
-				newPosition += pos;
+      	vColor = vec4( birdColor, 1.0 );
+      	gl_Position = projectionMatrix *  viewMatrix  * vec4( newPosition, 1.0 );
+      }
+    </script>
 
-				z = newPosition.z;
+    <!-- bird geometry shader -->
+    <script type="x-shader/x-fragment" id="birdFS">
 
-				vColor = vec4( birdColor, 1.0 );
-				gl_Position = projectionMatrix *  viewMatrix  * vec4( newPosition, 1.0 );
-			}
+      varying vec4 vColor;
+      varying float z;
 
-		</script>
+      uniform vec3 color;
 
-		<!-- bird geometry shader -->
-		<script type="x-shader/x-fragment" id="birdFS">
+      void main() {
+      	// Fake colors for now
+      	float z2 = 0.2 + ( 1000. - z ) / 1000. * vColor.x;
+      	gl_FragColor = vec4( z2, z2, z2, 1. );
 
-			varying vec4 vColor;
-			varying float z;
+      }
+    </script>
 
-			uniform vec3 color;
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+        }
+      }
+    </script>
 
-			void main() {
-				// Fake colors for now
-				float z2 = 0.2 + ( 1000. - z ) / 1000. * vColor.x;
-				gl_FragColor = vec4( z2, z2, z2, 1. );
+    <script type="module">
+      import * as THREE from "three";
 
-			}
+      import { GPUComputationRenderer } from "three/addons/misc/GPUComputationRenderer.js";
 
-		</script>
+      /* TEXTURE WIDTH FOR SIMULATION */
+      const WIDTH = 32;
 
-		<script type="importmap">
-			{
-				"imports": {
-					"three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
-					"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
-				}
-			}
-		</script>
+      const BIRDS = WIDTH * WIDTH;
 
-		<script type="module">
+      // Custom Geometry - using 3 triangles each. No UVs, no normals currently.
+      class BirdGeometry extends THREE.BufferGeometry {
+        constructor() {
+          super();
 
-			import * as THREE from 'three';
+          const trianglesPerBird = 3;
+          const triangles = BIRDS * trianglesPerBird;
+          const points = triangles * 3;
 
+          const vertices = new THREE.BufferAttribute(
+            new Float32Array(points * 3),
+            3
+          );
+          const birdColors = new THREE.BufferAttribute(
+            new Float32Array(points * 3),
+            3
+          );
+          const references = new THREE.BufferAttribute(
+            new Float32Array(points * 2),
+            2
+          );
+          const birdVertex = new THREE.BufferAttribute(
+            new Float32Array(points),
+            1
+          );
 
-			import { GPUComputationRenderer } from 'three/addons/misc/GPUComputationRenderer.js';
+          this.setAttribute("position", vertices);
+          this.setAttribute("birdColor", birdColors);
+          this.setAttribute("reference", references);
+          this.setAttribute("birdVertex", birdVertex);
 
-			/* TEXTURE WIDTH FOR SIMULATION */
-			const WIDTH = 32;
+          // this.setAttribute( 'normal', new Float32Array( points * 3 ), 3 );
 
-			const BIRDS = WIDTH * WIDTH;
+          let v = 0;
 
-			// Custom Geometry - using 3 triangles each. No UVs, no normals currently.
-			class BirdGeometry extends THREE.BufferGeometry {
+          function verts_push() {
+            for (let i = 0; i < arguments.length; i++) {
+              vertices.array[v++] = arguments[i];
+            }
+          }
 
-				constructor() {
+          const wingsSpan = 20;
 
-					super();
+          for (let f = 0; f < BIRDS; f++) {
+            // Body
 
-					const trianglesPerBird = 3;
-					const triangles = BIRDS * trianglesPerBird;
-					const points = triangles * 3;
+            verts_push(0, -0, -20, 0, 4, -20, 0, 0, 30);
 
-					const vertices = new THREE.BufferAttribute( new Float32Array( points * 3 ), 3 );
-					const birdColors = new THREE.BufferAttribute( new Float32Array( points * 3 ), 3 );
-					const references = new THREE.BufferAttribute( new Float32Array( points * 2 ), 2 );
-					const birdVertex = new THREE.BufferAttribute( new Float32Array( points ), 1 );
+            // Wings
 
-					this.setAttribute( 'position', vertices );
-					this.setAttribute( 'birdColor', birdColors );
-					this.setAttribute( 'reference', references );
-					this.setAttribute( 'birdVertex', birdVertex );
+            verts_push(0, 0, -15, -wingsSpan, 0, 0, 0, 0, 15);
 
-					// this.setAttribute( 'normal', new Float32Array( points * 3 ), 3 );
+            verts_push(0, 0, 15, wingsSpan, 0, 0, 0, 0, -15);
+          }
 
+          for (let v = 0; v < triangles * 3; v++) {
+            const triangleIndex = ~~(v / 3);
+            const birdIndex = ~~(triangleIndex / trianglesPerBird);
+            const x = (birdIndex % WIDTH) / WIDTH;
+            const y = ~~(birdIndex / WIDTH) / WIDTH;
 
-					let v = 0;
+            const c = new THREE.Color(
+              0x666666 + (~~(v / 9) / BIRDS) * 0x666666
+            );
 
-					function verts_push() {
+            birdColors.array[v * 3 + 0] = c.r;
+            birdColors.array[v * 3 + 1] = c.g;
+            birdColors.array[v * 3 + 2] = c.b;
 
-						for ( let i = 0; i < arguments.length; i ++ ) {
+            references.array[v * 2] = x;
+            references.array[v * 2 + 1] = y;
 
-							vertices.array[ v ++ ] = arguments[ i ];
+            birdVertex.array[v] = v % 9;
+          }
 
-						}
+          this.scale(0.2, 0.2, 0.2);
+        }
+      }
 
-					}
+      //
 
-					const wingsSpan = 20;
+      let container;
+      let camera, scene, renderer;
+      let mouseX = 0,
+        mouseY = 0;
 
-					for ( let f = 0; f < BIRDS; f ++ ) {
+      let windowHalfX = window.innerWidth / 2;
+      let windowHalfY = window.innerHeight / 2;
 
-						// Body
+      const BOUNDS = 800,
+        BOUNDS_HALF = BOUNDS / 2;
 
-						verts_push(
-							0, - 0, - 20,
-							0, 4, - 20,
-							0, 0, 30
-						);
+      let last = performance.now();
 
-						// Wings
+      let gpuCompute;
+      let velocityVariable;
+      let positionVariable;
+      let positionUniforms;
+      let velocityUniforms;
+      let birdUniforms;
 
-						verts_push(
-							0, 0, - 15,
-							- wingsSpan, 0, 0,
-							0, 0, 15
-						);
+      init();
 
-						verts_push(
-							0, 0, 15,
-							wingsSpan, 0, 0,
-							0, 0, - 15
-						);
+      function init() {
+        container = document.createElement("div");
+        container.id = "webgl-container";
+        document.body.prepend(container);
 
-					}
+        camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          1,
+          3000
+        );
+        camera.position.z = 350;
 
-					for ( let v = 0; v < triangles * 3; v ++ ) {
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xffffff);
+        scene.fog = new THREE.Fog(0xffffff, 100, 1000);
 
-						const triangleIndex = ~ ~ ( v / 3 );
-						const birdIndex = ~ ~ ( triangleIndex / trianglesPerBird );
-						const x = ( birdIndex % WIDTH ) / WIDTH;
-						const y = ~ ~ ( birdIndex / WIDTH ) / WIDTH;
+        renderer = new THREE.WebGLRenderer();
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setAnimationLoop(animate);
+        container.appendChild(renderer.domElement);
 
-						const c = new THREE.Color(
-							0x666666 +
-							~ ~ ( v / 9 ) / BIRDS * 0x666666
-						);
+        initComputeRenderer();
 
-						birdColors.array[ v * 3 + 0 ] = c.r;
-						birdColors.array[ v * 3 + 1 ] = c.g;
-						birdColors.array[ v * 3 + 2 ] = c.b;
+        container.style.touchAction = "none";
+        container.addEventListener("pointermove", onPointerMove);
 
-						references.array[ v * 2 ] = x;
-						references.array[ v * 2 + 1 ] = y;
+        //
 
-						birdVertex.array[ v ] = v % 9;
+        window.addEventListener("resize", onWindowResize);
 
-					}
+        //const gui = new GUI();
 
-					this.scale( 0.2, 0.2, 0.2 );
+        const effectController = {
+          separation: 20.0,
+          alignment: 20.0,
+          cohesion: 20.0,
+          freedom: 0.75,
+        };
 
-				}
+        const valuesChanger = function () {
+          velocityUniforms["separationDistance"].value =
+            effectController.separation;
+          velocityUniforms["alignmentDistance"].value =
+            effectController.alignment;
+          velocityUniforms["cohesionDistance"].value =
+            effectController.cohesion;
+          velocityUniforms["freedomFactor"].value = effectController.freedom;
+        };
 
-			}
+        valuesChanger();
 
-			//
-
-			let container;
-			let camera, scene, renderer;
-			let mouseX = 0, mouseY = 0;
-
-			let windowHalfX = window.innerWidth / 2;
-			let windowHalfY = window.innerHeight / 2;
-
-			const BOUNDS = 800, BOUNDS_HALF = BOUNDS / 2;
-
-			let last = performance.now();
-
-			let gpuCompute;
-			let velocityVariable;
-			let positionVariable;
-			let positionUniforms;
-			let velocityUniforms;
-			let birdUniforms;
-
-			init();
-
-			function init() {
-
-				container = document.createElement( 'div' );
-				container.id = 'webgl-container';
-				document.body.prepend( container );
-
-				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
-				camera.position.z = 350;
-
-				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0xffffff );
-				scene.fog = new THREE.Fog( 0xffffff, 100, 1000 );
-
-				renderer = new THREE.WebGLRenderer();
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.setAnimationLoop( animate );
-				container.appendChild( renderer.domElement );
-
-				initComputeRenderer();
-
-				
-
-				container.style.touchAction = 'none';
-				container.addEventListener( 'pointermove', onPointerMove );
-
-				//
-
-				window.addEventListener( 'resize', onWindowResize );
-
-				//const gui = new GUI();
-
-
-				const effectController = {
-					separation: 20.0,
-					alignment: 20.0,
-					cohesion: 20.0,
-					freedom: 0.75
-				};
-
-				const valuesChanger = function () {
-
-					velocityUniforms[ 'separationDistance' ].value = effectController.separation;
-					velocityUniforms[ 'alignmentDistance' ].value = effectController.alignment;
-					velocityUniforms[ 'cohesionDistance' ].value = effectController.cohesion;
-					velocityUniforms[ 'freedomFactor' ].value = effectController.freedom;
-
-				};
-
-				valuesChanger();
-
-				/*gui.add( effectController, 'separation', 0.0, 100.0, 1.0 ).onChange( valuesChanger );
+        /*gui.add( effectController, 'separation', 0.0, 100.0, 1.0 ).onChange( valuesChanger );
 				gui.add( effectController, 'alignment', 0.0, 100, 0.001 ).onChange( valuesChanger );
 				gui.add( effectController, 'cohesion', 0.0, 100, 0.025 ).onChange( valuesChanger );
 				gui.close();*/
 
-				initBirds();
-
-			}
-
-			function initComputeRenderer() {
-
-				gpuCompute = new GPUComputationRenderer( WIDTH, WIDTH, renderer );
-
-				const dtPosition = gpuCompute.createTexture();
-				const dtVelocity = gpuCompute.createTexture();
-				fillPositionTexture( dtPosition );
-				fillVelocityTexture( dtVelocity );
-
-				velocityVariable = gpuCompute.addVariable( 'textureVelocity', document.getElementById( 'fragmentShaderVelocity' ).textContent, dtVelocity );
-				positionVariable = gpuCompute.addVariable( 'texturePosition', document.getElementById( 'fragmentShaderPosition' ).textContent, dtPosition );
-
-				gpuCompute.setVariableDependencies( velocityVariable, [ positionVariable, velocityVariable ] );
-				gpuCompute.setVariableDependencies( positionVariable, [ positionVariable, velocityVariable ] );
-
-				positionUniforms = positionVariable.material.uniforms;
-				velocityUniforms = velocityVariable.material.uniforms;
-
-				positionUniforms[ 'time' ] = { value: 0.0 };
-				positionUniforms[ 'delta' ] = { value: 0.0 };
-				velocityUniforms[ 'time' ] = { value: 1.0 };
-				velocityUniforms[ 'delta' ] = { value: 0.0 };
-				velocityUniforms[ 'testing' ] = { value: 1.0 };
-				velocityUniforms[ 'separationDistance' ] = { value: 1.0 };
-				velocityUniforms[ 'alignmentDistance' ] = { value: 1.0 };
-				velocityUniforms[ 'cohesionDistance' ] = { value: 1.0 };
-				velocityUniforms[ 'freedomFactor' ] = { value: 1.0 };
-				velocityUniforms[ 'predator' ] = { value: new THREE.Vector3() };
-				velocityVariable.material.defines.BOUNDS = BOUNDS.toFixed( 2 );
-
-				velocityVariable.wrapS = THREE.RepeatWrapping;
-				velocityVariable.wrapT = THREE.RepeatWrapping;
-				positionVariable.wrapS = THREE.RepeatWrapping;
-				positionVariable.wrapT = THREE.RepeatWrapping;
-
-				const error = gpuCompute.init();
-
-				if ( error !== null ) {
-
-					console.error( error );
-
-				}
-
-			}
-
-			function initBirds() {
-
-				const geometry = new BirdGeometry();
-
-				// For Vertex and Fragment
-				birdUniforms = {
-					'color': { value: new THREE.Color( 0xff2200 ) },
-					'texturePosition': { value: null },
-					'textureVelocity': { value: null },
-					'time': { value: 1.0 },
-					'delta': { value: 0.0 }
-				};
-
-				// THREE.ShaderMaterial
-				const material = new THREE.ShaderMaterial( {
-					uniforms: birdUniforms,
-					vertexShader: document.getElementById( 'birdVS' ).textContent,
-					fragmentShader: document.getElementById( 'birdFS' ).textContent,
-					side: THREE.DoubleSide
-
-				} );
-
-				const birdMesh = new THREE.Mesh( geometry, material );
-				birdMesh.rotation.y = Math.PI / 2;
-				birdMesh.matrixAutoUpdate = false;
-				birdMesh.updateMatrix();
-
-				scene.add( birdMesh );
-
-			}
-
-			function fillPositionTexture( texture ) {
-
-				const theArray = texture.image.data;
-
-				for ( let k = 0, kl = theArray.length; k < kl; k += 4 ) {
-
-					const x = Math.random() * BOUNDS - BOUNDS_HALF;
-					const y = Math.random() * BOUNDS - BOUNDS_HALF;
-					const z = Math.random() * BOUNDS - BOUNDS_HALF;
-
-					theArray[ k + 0 ] = x;
-					theArray[ k + 1 ] = y;
-					theArray[ k + 2 ] = z;
-					theArray[ k + 3 ] = 1;
-
-				}
-
-			}
-
-			function fillVelocityTexture( texture ) {
-
-				const theArray = texture.image.data;
-
-				for ( let k = 0, kl = theArray.length; k < kl; k += 4 ) {
-
-					const x = Math.random() - 0.5;
-					const y = Math.random() - 0.5;
-					const z = Math.random() - 0.5;
-
-					theArray[ k + 0 ] = x * 10;
-					theArray[ k + 1 ] = y * 10;
-					theArray[ k + 2 ] = z * 10;
-					theArray[ k + 3 ] = 1;
-
-				}
-
-			}
-
-			function onWindowResize() {
-
-				windowHalfX = window.innerWidth / 2;
-				windowHalfY = window.innerHeight / 2;
-
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-			}
-
-			function onPointerMove( event ) {
-
-				if ( event.isPrimary === false ) return;
-
-				mouseX = event.clientX - windowHalfX;
-				mouseY = event.clientY - windowHalfY;
-
-			}
-
-			//
-
-			function animate() {
-
-				render();
-
-			}
-
-			function render() {
-
-				const now = performance.now();
-				let delta = ( now - last ) / 1000;
-
-				if ( delta > 1 ) delta = 1; // safety cap on large deltas
-				last = now;
-
-				positionUniforms[ 'time' ].value = now;
-				positionUniforms[ 'delta' ].value = delta;
-				velocityUniforms[ 'time' ].value = now;
-				velocityUniforms[ 'delta' ].value = delta;
-				birdUniforms[ 'time' ].value = now;
-				birdUniforms[ 'delta' ].value = delta;
-
-				velocityUniforms[ 'predator' ].value.set( 0.5 * mouseX / windowHalfX, - 0.5 * mouseY / windowHalfY, 0 );
-
-				mouseX = 10000;
-				mouseY = 10000;
-
-				gpuCompute.compute();
-
-				birdUniforms[ 'texturePosition' ].value = gpuCompute.getCurrentRenderTarget( positionVariable ).texture;
-				birdUniforms[ 'textureVelocity' ].value = gpuCompute.getCurrentRenderTarget( velocityVariable ).texture;
-
-				renderer.render( scene, camera );
-
-			}
-
-		</script>
-
-		<script>
-			window.addEventListener("load", (event) => {
-			const navbar = document.querySelector('#nav-dots');
-			const canvas = document.querySelector('canvas');
-			const current_dist = navbar.offsetTop;
-			const sticky = navbar.offsetTop;
-
-			
-			window.onscroll = function() {
-			navbar.style.marginTop = 0;
-			
-
-
-			
-				navbar.style.top = (pageYOffset + current_dist) + "px";
-			
-}
-});
-		</script>
-
-<script>
-	function isInViewport(element) {
-		const rect = element.getBoundingClientRect();
-		return rect.top >= 0 && rect.left >= 0 &&
-			rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-			rect.right <= (window.innerWidth || document.documentElement.clientWidth);
-	}
-	
-	function isMostlyInViewport(element) {
-		const rect = element.getBoundingClientRect();
-		
-		// Calculate the visible area of the element
-		const elementHeight = rect.height;
-		const visibleHeight = Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top);
-		
-		// Consider the element in the viewport if at least 50% of it is visible
-		const visibilityThreshold = 0.4; // 42% visible
-		const visibilityRatio = visibleHeight / elementHeight;
-	
-		return visibilityRatio >= visibilityThreshold;
-	}
-
-	
-	
-	// Enable scrolling for the second div when it comes into view
-	function checkScrollEnable() {
-		const secondDiv = document.getElementById('viewport');
-		const aboutDiv = document.getElementById('About');
-		//const projectsDiv = document.getElementById('Projects');
-		const testDiv = document.getElementById('Testimonials');
-		const talkDiv = document.getElementById('Talk');
+        initBirds();
+      }
+
+      function initComputeRenderer() {
+        gpuCompute = new GPUComputationRenderer(WIDTH, WIDTH, renderer);
+
+        const dtPosition = gpuCompute.createTexture();
+        const dtVelocity = gpuCompute.createTexture();
+        fillPositionTexture(dtPosition);
+        fillVelocityTexture(dtVelocity);
+
+        velocityVariable = gpuCompute.addVariable(
+          "textureVelocity",
+          document.getElementById("fragmentShaderVelocity").textContent,
+          dtVelocity
+        );
+        positionVariable = gpuCompute.addVariable(
+          "texturePosition",
+          document.getElementById("fragmentShaderPosition").textContent,
+          dtPosition
+        );
+
+        gpuCompute.setVariableDependencies(velocityVariable, [
+          positionVariable,
+          velocityVariable,
+        ]);
+        gpuCompute.setVariableDependencies(positionVariable, [
+          positionVariable,
+          velocityVariable,
+        ]);
+
+        positionUniforms = positionVariable.material.uniforms;
+        velocityUniforms = velocityVariable.material.uniforms;
+
+        positionUniforms["time"] = { value: 0.0 };
+        positionUniforms["delta"] = { value: 0.0 };
+        velocityUniforms["time"] = { value: 1.0 };
+        velocityUniforms["delta"] = { value: 0.0 };
+        velocityUniforms["testing"] = { value: 1.0 };
+        velocityUniforms["separationDistance"] = { value: 1.0 };
+        velocityUniforms["alignmentDistance"] = { value: 1.0 };
+        velocityUniforms["cohesionDistance"] = { value: 1.0 };
+        velocityUniforms["freedomFactor"] = { value: 1.0 };
+        velocityUniforms["predator"] = { value: new THREE.Vector3() };
+        velocityVariable.material.defines.BOUNDS = BOUNDS.toFixed(2);
+
+        velocityVariable.wrapS = THREE.RepeatWrapping;
+        velocityVariable.wrapT = THREE.RepeatWrapping;
+        positionVariable.wrapS = THREE.RepeatWrapping;
+        positionVariable.wrapT = THREE.RepeatWrapping;
+
+        const error = gpuCompute.init();
+
+        if (error !== null) {
+          console.error(error);
+        }
+      }
+
+      function initBirds() {
+        const geometry = new BirdGeometry();
+
+        // For Vertex and Fragment
+        birdUniforms = {
+          color: { value: new THREE.Color(0xff2200) },
+          texturePosition: { value: null },
+          textureVelocity: { value: null },
+          time: { value: 1.0 },
+          delta: { value: 0.0 },
+        };
+
+        // THREE.ShaderMaterial
+        const material = new THREE.ShaderMaterial({
+          uniforms: birdUniforms,
+          vertexShader: document.getElementById("birdVS").textContent,
+          fragmentShader: document.getElementById("birdFS").textContent,
+          side: THREE.DoubleSide,
+        });
+
+        const birdMesh = new THREE.Mesh(geometry, material);
+        birdMesh.rotation.y = Math.PI / 2;
+        birdMesh.matrixAutoUpdate = false;
+        birdMesh.updateMatrix();
+
+        scene.add(birdMesh);
+      }
+
+      function fillPositionTexture(texture) {
+        const theArray = texture.image.data;
+
+        for (let k = 0, kl = theArray.length; k < kl; k += 4) {
+          const x = Math.random() * BOUNDS - BOUNDS_HALF;
+          const y = Math.random() * BOUNDS - BOUNDS_HALF;
+          const z = Math.random() * BOUNDS - BOUNDS_HALF;
+
+          theArray[k + 0] = x;
+          theArray[k + 1] = y;
+          theArray[k + 2] = z;
+          theArray[k + 3] = 1;
+        }
+      }
+
+      function fillVelocityTexture(texture) {
+        const theArray = texture.image.data;
+
+        for (let k = 0, kl = theArray.length; k < kl; k += 4) {
+          const x = Math.random() - 0.5;
+          const y = Math.random() - 0.5;
+          const z = Math.random() - 0.5;
+
+          theArray[k + 0] = x * 10;
+          theArray[k + 1] = y * 10;
+          theArray[k + 2] = z * 10;
+          theArray[k + 3] = 1;
+        }
+      }
+
+      function onWindowResize() {
+        windowHalfX = window.innerWidth / 2;
+        windowHalfY = window.innerHeight / 2;
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+
+      function onPointerMove(event) {
+        if (event.isPrimary === false) return;
+
+        mouseX = event.clientX - windowHalfX;
+        mouseY = event.clientY - windowHalfY;
+      }
+
+      //
+
+      function animate() {
+        render();
+      }
+
+      function render() {
+        const now = performance.now();
+        let delta = (now - last) / 1000;
+
+        if (delta > 1) delta = 1; // safety cap on large deltas
+        last = now;
+
+        positionUniforms["time"].value = now;
+        positionUniforms["delta"].value = delta;
+        velocityUniforms["time"].value = now;
+        velocityUniforms["delta"].value = delta;
+        birdUniforms["time"].value = now;
+        birdUniforms["delta"].value = delta;
+
+        velocityUniforms["predator"].value.set(
+          (0.5 * mouseX) / windowHalfX,
+          (-0.5 * mouseY) / windowHalfY,
+          0
+        );
+
+        mouseX = 10000;
+        mouseY = 10000;
+
+        gpuCompute.compute();
+
+        birdUniforms["texturePosition"].value =
+          gpuCompute.getCurrentRenderTarget(positionVariable).texture;
+        birdUniforms["textureVelocity"].value =
+          gpuCompute.getCurrentRenderTarget(velocityVariable).texture;
+
+        renderer.render(scene, camera);
+      }
+    </script>
+
+    <script>
+      window.addEventListener("load", (event) => {
+        const navbar = document.querySelector("#nav-dots");
+        const canvas = document.querySelector("canvas");
+        const current_dist = navbar.offsetTop;
+        const sticky = navbar.offsetTop;
+
+       // window.onscroll = function () {
+        //  navbar.style.marginTop = 0;
+
+        //  navbar.style.top = pageYOffset + current_dist + "px";
+       // };
+      });
+    </script>
+
+    <script>
 		/*
+      function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+          rect.top >= 0 &&
+          rect.left >= 0 &&
+          rect.bottom <=
+            (window.innerHeight || document.documentElement.clientHeight) &&
+          rect.right <=
+            (window.innerWidth || document.documentElement.clientWidth)
+        );
+      }
+
+      function isMostlyInViewport(element) {
+        const rect = element.getBoundingClientRect();
+
+        // Calculate the visible area of the element
+        const elementHeight = rect.height;
+        const visibleHeight =
+          Math.min(window.innerHeight, rect.bottom) - Math.max(0, rect.top);
+
+        // Consider the element in the viewport if at least 50% of it is visible
+        const visibilityThreshold = 0.4; // 42% visible
+        const visibilityRatio = visibleHeight / elementHeight;
+
+        return visibilityRatio >= visibilityThreshold;
+      }
+
+      // Enable scrolling for the second div when it comes into view
+      function checkScrollEnable() {
+        const secondDiv = document.getElementById("viewport");
+        const aboutDiv = document.getElementById("About");
+        //const projectsDiv = document.getElementById('Projects');
+        const testDiv = document.getElementById("Testimonials");
+        const talkDiv = document.getElementById("Talk");
+        /*
 		if (isInViewport(secondDiv)) {
 			secondDiv.style.overflow = 'scroll'; // Enable scrolling
 		} else {
@@ -784,137 +828,95 @@
 			document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
 		}*/
 
-		/*
-else if (isMostlyInViewport(projectsDiv)) {
+        /*
+			else if (isMostlyInViewport(projectsDiv)) {
 			document.querySelector('.dot-wrap.about').classList.remove('mimic-hover');
 			document.querySelector('.dot-wrap.talk').classList.remove('mimic-hover');
 			//document.querySelector('.dot-wrap.testimonials').classList.remove('mimic-hover');
 			document.querySelector('.dot-wrap.projects').classList.add('mimic-hover');
 		}
 		*/
-		
+
+		/*
+
+        if (isMostlyInViewport(aboutDiv)) {
+          document
+            .querySelector(".dot-wrap.about")
+            .classList.add("mimic-hover");
+          document
+            .querySelector(".dot-wrap.talk")
+            .classList.remove("mimic-hover");
+          document
+            .querySelector(".dot-wrap.testimonials")
+            .classList.remove("mimic-hover");
+          //document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
+        } else if (isMostlyInViewport(testDiv)) {
+          document
+            .querySelector(".dot-wrap.about")
+            .classList.remove("mimic-hover");
+          document
+            .querySelector(".dot-wrap.talk")
+            .classList.remove("mimic-hover");
+          document
+            .querySelector(".dot-wrap.testimonials")
+            .classList.add("mimic-hover");
+          //document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
+        } else if (isMostlyInViewport(talkDiv)) {
+          document
+            .querySelector(".dot-wrap.about")
+            .classList.remove("mimic-hover");
+          document.querySelector(".dot-wrap.talk").classList.add("mimic-hover");
+          document
+            .querySelector(".dot-wrap.testimonials")
+            .classList.remove("mimic-hover");
+          //document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
+        } else {
+          document
+            .querySelector(".dot-wrap.about")
+            .classList.remove("mimic-hover");
+          document
+            .querySelector(".dot-wrap.work")
+            .classList.remove("mimic-hover");
+          document
+            .querySelector(".dot-wrap.testimonials")
+            .classList.remove("mimic-hover");
+          document
+            .querySelector(".dot-wrap.projects")
+            .classList.remove("mimic-hover");
+        }
+      }
+
+      // Event listener for scrolling
+      window.addEventListener("scroll", checkScrollEnable);
+
+      // Call the check function initially in case the page is loaded with the second div already in view
+      checkScrollEnable();
+	  */
+    </script>
+
+	<!-- Horizontal Scroll -->
+	<script>
+		let translate = 0;
+	function transformScroll(event) {
+  if (!event.deltaY) {
+    return;
+  }
+  
+  const minScroll = (window.innerWidth * 0.1) + 70;
+  console.log(minScroll);
+  translate += (event.deltaY + event.deltaX)/3;
+  translate = Math.max(translate, -minScroll);
+  //final = Math.max(-minScroll, translate);
+  console.log(translate);
+  let t = document.getElementById('ticker');
+  t.style.transform = `translateX(${-translate}px)`;
+}
+
+var element = document.scrollingElement || document.documentElement;
+element.addEventListener('wheel', transformScroll);	
 	
-		if (isMostlyInViewport(aboutDiv) ) {
-			document.querySelector('.dot-wrap.about').classList.add('mimic-hover');
-			document.querySelector('.dot-wrap.talk').classList.remove('mimic-hover');
-			document.querySelector('.dot-wrap.testimonials').classList.remove('mimic-hover');
-			//document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
-		} 
-		else if (isMostlyInViewport(testDiv) ) {
-			document.querySelector('.dot-wrap.about').classList.remove('mimic-hover');
-			document.querySelector('.dot-wrap.talk').classList.remove('mimic-hover');
-			document.querySelector('.dot-wrap.testimonials').classList.add('mimic-hover');
-			//document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
-		} 
-		 else if (isMostlyInViewport(talkDiv) ) {
-			document.querySelector('.dot-wrap.about').classList.remove('mimic-hover');
-			document.querySelector('.dot-wrap.talk').classList.add('mimic-hover');
-			document.querySelector('.dot-wrap.testimonials').classList.remove('mimic-hover');
-			//document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
-		}
-		else {
-			document.querySelector('.dot-wrap.about').classList.remove('mimic-hover');
-			document.querySelector('.dot-wrap.work').classList.remove('mimic-hover');
-			document.querySelector('.dot-wrap.testimonials').classList.remove('mimic-hover');
-			document.querySelector('.dot-wrap.projects').classList.remove('mimic-hover');
-		}
-	}
-	
-	// Event listener for scrolling
-	window.addEventListener('scroll', checkScrollEnable);
-	
-	// Call the check function initially in case the page is loaded with the second div already in view
-	checkScrollEnable();
 	</script>
-		
-	<div id="About" class="text-section">
-		<p>N of 1 is a design studio led by Chatham 
-			Sullivan specializing in <span class="about">people innovation.</span>
-		</p>		
-		<p>
-			Our mission is to bring the same bold, creative 
-			problem-solving and high-impact design 
-			typically reserved for groundbreaking 
-			products and services in the market to the 
-			heart of every organization: its people. 
-		</p>
-	
-	</div>
 
-	<div id="Testimonials">
-		<div class="text-section">
-			<p>Neil Alger, Head of Talent Development  
-				<span class="testimonials">Google School</span> for Leaders 
-			</p>
-			<p>Working  with  Chatham  is  like  opening  a  door 
-				that  you  were  always  curious  about  but  just 
-				assumed was permanently locked. Don't be 
-				surprised  if  the  world  around  you  no  longer 
-				looks like it once did.</p>
-
-		</div>
-		<div class="text-section">
-			<p>Rory Sutherland Vice Chairman 
-				<span class="testimonials">Ogilvy</span> 
-			</p>
-			<p>I was shown it under conditions of 
-				inviolable secrecy, but they had spotted 
-				things about us so quickly and astutely, I 
-				was stunningly impressed. I thought the 
-				work was utterly fabulous.  </p>
-
-		</div>
-		
-
-		<div class="text-section">
-			<p>Christina Wire VP Global Operations 
-				<span class="testimonials">YouTube</span> 
-			</p>
-			<p>"The insights I gleaned from our work were 
-				transformational. To say that Chatham challenged 
-				my dominant thinking and inspired my team to step 
-				into an entirely new set of possibilities is a massive 
-				understatement. The takeaways are actively shaping 
-				how we're reframing our whole scale initiative.”</p>
-
-		</div>
-
-		<div class="text-section">
-			<p>Michael Ehret, Head of Global Talent  
-				<span class="testimonials">Johnson & Johnson</span>
-			</p>
-			<p>“Chatham  is  not  a  traditional  consultant,  but  a 
-				transformative  guide.  He  has  helped  reframe 
-				my way of thinking around work to be product-
-				centric and obsessively focused on our 
-				people’s  experience.  There  is  no  one  better 
-				equipped  to  help  individuals  and  companies  to 
-				find their way.”</p>
-
-		</div>
-	</div>
-
-	<!--<div id="Projects" class="text-section projects">
-		<h2>Projects</h2>
-		<p>Notable projects: At Udemy, developed ‘the box,’ a system to set clear performance expectations, fairly evaluate contributions, and reward accordingly. For Google, a talent agency for VPs as part of  the  Google  School  for  Leaders.  At  Ogilvy,  designed  and  led Project  X,  an  experiment  that  broke  up  business-as-usual,  where small  teams  generated  big  ideas  for  Starbucks,  Southwest,  and Footlocker; established top team governance and enterprise operating  principles  for  Johnson  &  Johnson’s  med  tech  sector.  At Leo Burnett, designed a concept for faster, cheaper, and happier creative teams; developed ‘Concept to Code’ (C2C) for PayPal, an executive experience to accelerate innovation. At Wharton, designed  and  managed  executive  education  program  for  Dubai World,  the  largest  at  that  point  in  Wharton  history;  launched  an unconventional leadership campaign at J&J Pharmaceutical, focused on boosting leaders’ impact bringing differentiated drugs to  market  quickly;  led  an  8-year  executive  development  program at  Southern  California  Edison,  preparing  half  the  executive  team, including the CEO.</p>
-	</div> -->
-
-	<div id="Talk" class="text-section">
-		<p>If you're looking for...  </p>
-		<ul>
-			<li>
-				a fast-moving partner who prioritizes action and progress over slides and roadmaps
-			</li>
-			<li>
-				an alternative to the canned solutions of big firms.			
-			</li>
-			<li>
-				a partner with charisma. Someone that gets and speaks to you honestly without fear or favor.
-			</li>
-		</ul>
-		<p>
-			And you care about quality and impact, not just checking the box. You want to make a difference?
-			<br><span class="talk">Let's talk.</span>
-		</p>
-	</dvi>
-</body></html>
+    
+  </body>
+</html>

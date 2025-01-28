@@ -4,10 +4,10 @@
 		#nav-dots{z-index:10;position:absolute;margin:auto;top:0;bottom:0;right:5%;justify-content: space-between;height:30vh;display: flex;flex-direction: column;text-align: right;}
 		.dot-text{font-size: 30px;vertical-align: middle; position:sticky;line-height: 1;}
 		.dot{font-size: 120px; line-height: 1; margin-top: 0;margin-bottom: 0;vertical-align: middle; position:sticky;}
-		.about, .about *{color:black !important;}
-		.testimonials, .testimonials *{color: #353935 !important;}
-		.projects, .projects *{color:black !important;}
-		.talk, .talk *{color: #36454F !important;}
+		.about, .about *{color: #FF40FF !important; filter: grayscale(100%);font-weight: 900;}
+		.testimonials, .testimonials *{color: #68DDAA !important; filter: grayscale(100%);font-weight: 900;}
+		.projects, .projects *{color:black !important; font-weight: 900;}
+		.talk, .talk *{color: #FF2500 !important; filter: grayscale(100%); font-weight: 900;}
 		.dot-wrap{position:sticky;	
 		}
 		.dot-wrap a {
@@ -22,7 +22,7 @@
     opacity: 1;
 }
 
-.text-section{  
+/*.text-section{  
 	position: relative;
 	margin-top: 20vh; padding:1.3rem; 
 	border-radius: 15px; 
@@ -31,10 +31,10 @@
 	padding-right: 10vw;
 	margin-right: 10vw; 
 	background-color: rgba(255,255,255,.8);
-	/*mask: linear-gradient(to right, transparent, black, transparent);
+	/mask: linear-gradient(to right, transparent, black, transparent);
 	backdrop-filter: blur(3px); 
 	-webkit-backdrop-filter: blur(3px);
-	box-shadow: 0 4px 30px rgba(0,0,0,.1);*/
+	box-shadow: 0 4px 30px rgba(0,0,0,.1);/
 	border: 1px solid rgba(255,255,255,.15);
 }
 
@@ -47,7 +47,7 @@
 	background: white;
 	mask: linear-gradient(to right, transparent, black 35%, transparent);
 	backdrop-filter: blur(2px);
- }
+ }*/
 
 
 /*
@@ -56,6 +56,39 @@
 	border: 1px solid rgba(186, 242, 236,.15);
 
 }*/
+
+
+
+#ticker-container {
+	top: 20px; /* Adjust as needed */
+	width: 100%;
+	overflow: hidden;
+	padding: 10px;
+	font-size: 1.2em;
+	z-index: 10; /* Ensure it stays above other content */
+	mask: linear-gradient(to right, transparent 2%, white, white, transparent 90%);
+  }
+
+  #ticker-container::after{
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+ 
+	background: white;
+	mask: linear-gradient(to right, transparent 2%, white, white, 90%, transparent);
+	backdrop-filter: blur(2px);
+  }
+  
+  #ticker {
+	display: inline-block;
+	white-space: nowrap;
+	transform: translateX(calc(10vw + 70px)); /* Starting position */
+	will-change: transform; /* Hint for optimization */
+	font-size: 2rem !important;
+  }
+
+  
 
 h2{
 	margin-top: clamp(12px, 2vh, 24px);
@@ -68,7 +101,6 @@ body {
 	font-size: 13px;
 	line-height: 24px;
 	overscroll-behavior: none;
-	padding-bottom: 20vh;
 }
 .logo{
 	height:100vh;
