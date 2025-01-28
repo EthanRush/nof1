@@ -5,9 +5,9 @@
 		.dot-text{font-size: 30px;vertical-align: middle; position:sticky;line-height: 1;}
 		.dot{font-size: 120px; line-height: 1; margin-top: 0;margin-bottom: 0;vertical-align: middle; position:sticky;}
 		.about, .about *{color:black !important;}
-		.testimonials, .testimonials *{color: black !important;}
+		.testimonials, .testimonials *{color: #353935 !important;}
 		.projects, .projects *{color:black !important;}
-		.talk, .talk *{color:black !important;}
+		.talk, .talk *{color: #36454F !important;}
 		.dot-wrap{position:sticky;	
 		}
 		.dot-wrap a {
