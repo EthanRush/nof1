@@ -85,58 +85,64 @@
     </div> -->
     <div class="logo" style="text-align: center; align-content: center">
       <img class="main-logo" src="./assets/BLACKlOGO_Transp.png" />
-	  <div id="ticker-container">
-		<div id="ticker">
-      <p class="new-text-section blank">
+      <div id="ticker-container">
+        <div id="ticker">
+          <p class="new-text-section blank"></p>
+          <p class="new-text-section">
+            N of 1 is a design studio led by Chatham Sullivan specializing in
+            <span class="about">people innovation.</span>
+            Our mission is to bring the same bold, creative problem-solving and
+            high-impact design typically reserved for groundbreaking products
+            and services in the market to the heart of every organization: its
+            people.
+          </p>
 
-      </p>
-		  <p class="new-text-section">
-			N of 1 is a design studio led by Chatham Sullivan specializing in <span class="about">people innovation.</span> 
-			Our mission is to bring the same bold, creative problem-solving and high-impact design  typically reserved
-			for groundbreaking products and services in the market to the heart  of every organization: its people.
-		  </p>
-	  
-		  <p class="new-text-section">
-			Neil Alger, Head of Talent Development <span class="testimonials">Google School</span> for Leaders 
-			"Working with Chatham is like opening a door that you were always curious about 
-			but just assumed was permanently locked. Don't be surprised if the world around 
-			you no longer looks like it once did."
-		  </p>
-	  
-		  <p class="new-text-section">
-			Rory Sutherland, Vice Chairman <span class="testimonials">Ogilvy</span> 
-			"I was shown it under conditions of inviolable  
-			secrecy, but they had spotted things about us so quickly and astutely,  
-			I was stunningly impressed. I thought the work was utterly fabulous."
-		  </p>
-	  
-		  <p class="new-text-section">
-			Christina Wire, VP Global Operations<span class="testimonials">YouTube</span> 
-			"The insights I gleaned from our work were transformational. To say that Chatham challenged 
-			my dominant thinking and inspired my team to step into an entirely new set of possibilities 
-			is a massive understatement. The takeaways are actively shaping how we're reframing our 
-			whole scale initiative."
-		  </p>
-	  
-		  <p class="new-text-section">
-			<span>Michael Ehret, Head of Global Talent</span><span class="testimonials">Johnson & Johnson</span> 
-			"Chatham is not a traditional consultant, but a transformative guide. He has helped reframe 
-			my way of thinking around work to be product-centric and obsessively focused on our  
-      people's experience. There is no one better equipped to help individuals and companies to  
-      find their way."
-		  </p>
-	  
-		  <p class="new-text-section">
-			If you're looking for a fast-moving partner who prioritizes action and progress over slides 
-      and roadmaps, an alternative to the canned solutions of big firms, a partner with charisma  
-      who speaks honestly without fear or favor, and someone who values quality and impact over 
-      checking the box, 
-		  </p>
-		</div>
-	  </div>
+          <p class="new-text-section">
+            Neil Alger, Head of Talent Development
+            <span class="testimonials">Google School</span> for Leaders "Working
+            with Chatham is like opening a door that you were always curious
+            about but just assumed was permanently locked. Don't be surprised if
+            the world around you no longer looks like it once did."
+          </p>
 
-    
-	  
+          <p class="new-text-section">
+            Rory Sutherland, Vice Chairman
+            <span class="testimonials">Ogilvy</span>
+            "I was shown it under conditions of inviolable secrecy, but they had
+            spotted things about us so quickly and astutely, I was stunningly
+            impressed. I thought the work was utterly fabulous."
+          </p>
+
+          <p class="new-text-section">
+            Christina Wire, VP Global Operations<span class="testimonials"
+              >YouTube</span
+            >
+            "The insights I gleaned from our work were transformational. To say
+            that Chatham challenged my dominant thinking and inspired my team to
+            step into an entirely new set of possibilities is a massive
+            understatement. The takeaways are actively shaping how we're
+            reframing our whole scale initiative."
+          </p>
+
+          <p class="new-text-section">
+            <span>Michael Ehret, Head of Global Talent</span
+            ><span class="testimonials">Johnson & Johnson</span>
+            "Chatham is not a traditional consultant, but a transformative
+            guide. He has helped reframe my way of thinking around work to be
+            product-centric and obsessively focused on our people's experience.
+            There is no one better equipped to help individuals and companies to
+            find their way."
+          </p>
+
+          <p class="new-text-section">
+            If you're looking for a fast-moving partner who prioritizes action
+            and progress over slides and roadmaps, an alternative to the canned
+            solutions of big firms, a partner with charisma who speaks honestly
+            without fear or favor, and someone who values quality and impact
+            over checking the box,
+          </p>
+        </div>
+      </div>
     </div>
 
     <!--
@@ -769,21 +775,21 @@
         //const canvas = document.querySelector("canvas");
         //const current_dist = navbar.offsetTop;
         //const sticky = navbar.offsetTop;
-
         // window.onscroll = function () {
         //  navbar.style.marginTop = 0;
-
         //  navbar.style.top = pageYOffset + current_dist + "px";
         // };
       });
     </script>
 
     <script>
-      document.querySelector(".logo").addEventListener("pointermove", (event) => {
-    const webglContainer = document.querySelector("#webgl-container");
-    const newEvent = new PointerEvent(event.type, event);
-    webglContainer.dispatchEvent(newEvent);
-});
+      document
+        .querySelector(".logo")
+        .addEventListener("pointermove", (event) => {
+          const webglContainer = document.querySelector("#webgl-container");
+          const newEvent = new PointerEvent(event.type, event);
+          webglContainer.dispatchEvent(newEvent);
+        });
     </script>
 
     <script>
@@ -900,7 +906,8 @@
 
     <!-- Horizontal Scroll -->
     <script>
-      const minScroll = window.innerWidth * 0.1 + (window.innerWidth * 0.0486);
+      /*
+      const minScroll = window.innerWidth * 0.1 + window.innerWidth * 0.0486;
       let translate = -minScroll;
 
       function transformScroll(event) {
@@ -909,7 +916,7 @@
         }
 
         translate += (event.deltaY + event.deltaX) / 3;
-       
+
         translate = Math.max(translate, 0);
         translate = Math.min(translate, window.innerWidth * 3.9);
         console.log(translate);
@@ -921,8 +928,54 @@
 
       var element = document.scrollingElement || document.documentElement;
       element.addEventListener("wheel", transformScroll);
-    </script>
+*/
+      //document.addEventListener("DOMContentLoaded", function () {
 
-    
+        const minScroll = window.innerWidth * 0.1 + window.innerWidth * 0.0486;
+
+        const ticker = document.getElementById("ticker");
+        const textSections = Array.from(ticker.getElementsByTagName("p"));
+        let currentIndex = 0;
+        let lastScrollY = window.scrollY;
+        let accumulatedScroll = 0;
+        const scrollThreshold = window.innerHeight * 0.2; // 5vh
+        //const slideAmount = window.innerHeight * 0.3; // 40vh
+        let currentOffset = 0;
+        let isAnimating = false;
+
+        function handleScroll(event) {
+          if (!event.deltaY) {
+          return;
+        }
+          const scrollY = event.deltaY;
+          accumulatedScroll += Math.abs(scrollY - lastScrollY)/3;
+          console.log(accumulatedScroll);
+          if (accumulatedScroll >= scrollThreshold && !isAnimating) {
+            isAnimating = true;
+            accumulatedScroll = 0;
+            if (currentIndex < textSections.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop back to the first item if at the end
+            }
+            const nextSection = textSections[currentIndex];
+            const offset = (-nextSection.offsetTop + (window.innerHeight * 0.25 * .25));
+            
+            //currentOffset -= slideAmount;
+
+            ticker.style.transition = "transform 0.8s ease-in-out";
+            ticker.style.transform = `translate(${minScroll}px, ${offset}px)`;
+
+            setTimeout(() => {
+              isAnimating = false;
+            }, 800); // Wait for animation to finish
+          }
+
+          lastScrollY = scrollY;
+        }
+        var element = document.scrollingElement || document.documentElement;
+        element.addEventListener("wheel", handleScroll);
+     // });
+    </script>
   </body>
 </html>
