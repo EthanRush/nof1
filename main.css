@@ -173,9 +173,7 @@
 	border: 1px solid rgba(186, 242, 236,.15);
 
 }*/
-.new-text-section{
-  margin-bottom: 20vh;
-}
+
 
 .new-text-section.blank{
   height: 20vh;
@@ -220,6 +218,8 @@
   will-change: transform; /* Hint for optimization */
   max-width: 69vw;
   text-wrap: auto;
+  height: 25vh;
+  justify-content: center;
 }
 
 #ticker * {
