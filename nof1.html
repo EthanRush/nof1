@@ -141,6 +141,10 @@
             without fear or favor, and someone who values quality and impact
             over checking the box,
           </p>
+
+          <p class="new-text-section final">
+            <a href='https://www.linkedin.com/in/chatham-sullivan-3519b370' target="_blank">LET'S TALK</a>
+          </p>
         </div>
       </div>
     </div>
@@ -834,7 +838,7 @@
           else if(ind > 1 && ind <= 5){
             document.querySelector('.dot-wrap.testimonials').classList.add('mimic-hover');
           }
-          else if(ind > 6){
+          else if(ind >= 6){
             document.querySelector('.dot-wrap.talk').classList.add('mimic-hover');
           }
         }
@@ -890,9 +894,7 @@
             // Update index
             if (currentIndex < textSections.length - 1) {
               currentIndex++;
-            } else {
-              currentIndex = 0; // Loop back to the first item if at the end
-            }
+            } 
 
             dotCheck(currentIndex);
 

@@ -174,10 +174,15 @@
 
 }*/
 
+.new-text-section {
+  display: none;
+}
 
 .new-text-section.blank{
   height: 20vh;
 }
+
+
 
 #ticker-container {
   top: 20px; /* Adjust as needed */
@@ -260,6 +265,32 @@ button {
 
 .logo, .logo *{
 	pointer-events: none !important;
+}
+.new-text-section.final{
+  background-color: rgba(0,0,0,.85);
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(3px);
+	box-shadow: 0 4px 30px rgba(0,0,0,.1);
+	border: 2px solid rgba(0,0,0,.15);
+  padding: clamp(9px, .1vh, 20px);
+  width: fit-content;
+  pointer-events: all !important;
+
+}
+.new-text-section.final:hover{
+  background-color: rgba(255,255,255,.8);
+  box-shadow: 0 4px 30px rgba(0,0,0,.65);
+
+}
+
+.new-text-section.final a{
+  pointer-events: all !important;
+  color: white;
+  display: inline-block;
+  width: 100%;
+}
+.new-text-section.final:hover a{
+color: black;
 }
 
 #info {
