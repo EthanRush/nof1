@@ -1,0 +1,11 @@
+@media screen and (max-width: 992px)
+ {
+    #ticker-container{
+        bottom: auto;
+        height: 35vh;
+        max-height: 40vh;
+    }    
+    .new-text-section.final{
+        max-width: 65vw;
+    }
+}
