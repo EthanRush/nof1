@@ -255,7 +255,7 @@
       	if ( dist < preyRadius ) {
 
       		f = ( distSquared / preyRadiusSq - 1.0 ) * delta * 100.;
-      		velocity += normalize( dir ) * f;
+      		velocity -= normalize( dir ) * f;
       		limit += 5.0;
       	}
 
