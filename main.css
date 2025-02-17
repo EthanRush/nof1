@@ -188,13 +188,14 @@
     width: 80vw;
     /* text-align: center; */
     overflow: hidden;
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 1.2em;
     z-index: 10;
     /*mask: linear-gradient(to bottom, transparent 20%, white 30%, white, transparent);*/
     backdrop-filter: blur(4px);
     pointer-events: none;
-    max-height: 23vh;
+    max-height: 21vh;
     position: fixed;
     bottom: 0;
     margin-top: auto;
