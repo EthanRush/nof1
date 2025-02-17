@@ -185,7 +185,7 @@
 
 
 #ticker-container {
-    width: 69vw;
+    width: 80vw;
     /* text-align: center; */
     overflow: hidden;
     padding: 10px;
@@ -202,6 +202,8 @@
     margin-right: auto;
     left: 0;
     right: 0;
+    display: none;
+    border-radius: 15px;
 }
 /*
 #ticker-container::after {
@@ -229,7 +231,7 @@
       white-space: nowrap;
       /* transform: translateX(calc(10vw + 4.86vw)); */
       will-change: transform;
-      max-width: 69vw;
+      max-width: 80vw;
       text-wrap: auto;
       height: 25vh;
       /* justify-content: center; */
@@ -284,7 +286,7 @@ button {
   padding: clamp(9px, .1vh, 20px);
   width: fit-content;
   pointer-events: all !important;
-  max-width: 68vw;
+  max-width: 79vw;
 
 
 }

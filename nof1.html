@@ -85,13 +85,13 @@
       </div>
     </div>
     <div class="logo" style="text-align: center; align-content: center">
-      <img class="main-logo" src="./assets/BLACKlOGO_Transp.png" />
+      <img class="main-logo" src="./assets/nof1Cropped.png" />
       <div id="ticker-container">
         <div id="ticker">
           <p class="new-text-section blank"></p>
           <p class="new-text-section">
             N of 1 is a design studio led by Chatham Sullivan specializing in
-            <span class="bold">people innovation.</span>
+            <span class="bold"> people innovation.</span>
             Our mission is to bring the same bold, creative problem-solving and
             high-impact design typically reserved for groundbreaking products
             and services in the market to the heart of every organization: its
@@ -100,7 +100,7 @@
 
           <p class="new-text-section">
             Neil Alger, Head of Talent Development
-            <span class="bold">Google School</span> for Leaders "Working with
+            <span class="bold"> Google School</span> for Leaders "Working with
             Chatham is like opening a door that you were always curious about
             but just assumed was permanently locked. Don't be surprised if the
             world around you no longer looks like it once did."
@@ -108,7 +108,7 @@
 
           <p class="new-text-section">
             Rory Sutherland, Vice Chairman
-            <span class="bold">Ogilvy</span>
+            <span class="bold"> Ogilvy</span>
             "I was shown it under conditions of inviolable secrecy, but they had
             spotted things about us so quickly and astutely, I was stunningly
             impressed. I thought the work was utterly fabulous."
@@ -116,7 +116,7 @@
 
           <p class="new-text-section">
             Christina Wire, VP Global Operations<span class="bold"
-              >YouTube</span
+              > YouTube</span
             >
             "The insights I gleaned from our work were transformational. To say
             that Chatham challenged my dominant thinking and inspired my team to
@@ -127,7 +127,7 @@
 
           <p class="new-text-section">
             <span>Michael Ehret, Head of Global Talent</span
-            ><span class="bold">Johnson & Johnson</span>
+            ><span class="bold"> Johnson & Johnson</span>
             "Chatham is not a traditional consultant, but a transformative
             guide. He has helped reframe my way of thinking around work to be
             product-centric and obsessively focused on our people's experience.
@@ -816,7 +816,7 @@
       //document.addEventListener("DOMContentLoaded", function () {
 
       const minScroll = window.innerWidth * 0.1 + window.innerWidth * 0.0486;
-
+      const tickerContainer = document.getElementById("ticker-container");
       const ticker = document.getElementById("ticker");
       const textSections = Array.from(ticker.getElementsByTagName("p"));
       let currentIndex = 0;
@@ -869,9 +869,11 @@
           // Prepare the new text element by displaying it and setting its initial opacity to 0
           textSections[currentIndex].style.display = "block";
           textSections[currentIndex].style.opacity = "0";
+          tickerContainer.style.display = "block";
 
           // Wait briefly (50ms) before starting the fade-in
           setTimeout(() => {
+            
             textSections[currentIndex].style.opacity = "1";
 
             // After the fade-in, wait 3 seconds before starting the fade-out of the new text
@@ -883,6 +885,7 @@
                 // Once the fade-out is complete (after 600ms), hide the new text
                 setTimeout(() => {
                   textSections[currentIndex].style.display = "none";
+                  tickerContainer.style.display = "none";
 
                   // All animations are now complete. If the condition is met, progress to the next index.
                   if (ind >= 2 && ind < 5) {
