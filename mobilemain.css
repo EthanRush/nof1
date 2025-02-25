@@ -2,10 +2,42 @@
  {
     #ticker-container{
         bottom: auto;
-        height: 35vh;
-        max-height: 40vh;
+        height: 50vh;
+        max-height: 50vh;
     }    
-    .new-text-section.final{
-        max-width: 65vw;
+    .mobile-only{
+        display: block;
     }
+    .desktop-only{
+        display: none !important;
+    }
+    #mobile-nav-dots{
+        flex-direction: row;
+        width: 80vw;
+        padding-left: 10vw;
+        right: unset;
+        display: flex;
+    }
+    .dot-wrap a{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-headers h3{
+        font-size: 24px;
+        position: absolute;
+        left:0;
+        right:0;
+        top: 0;
+        bottom: 0;
+        text-align: center;
+        height: 25vh;
+        display: none;
+        margin: auto;
+        color: black;
+    }
+
+    .new-text-section{
+        padding: 10px;
+      }
 }

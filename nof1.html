@@ -58,7 +58,7 @@
     </style>
   </head>
   <body cz-shortcut-listen="true">
-    <div id="nav-dots">
+    <div id="nav-dots" class="desktop-only">
       <div class="dot-wrap about">
         <a href="#About" onclick="proceedLoop(false);navdot('1')">
           <span class="dot-text">About</span>
@@ -83,6 +83,34 @@
           <span class="dot">&#x2022;</span>
         </a>
       </div>
+    </div>
+    <div id="mobile-nav-dots" class="mobile-only">
+      <div class="dot-wrap about">
+        <a href="#About" onclick="proceedLoop(false);navdot('1')">
+          <span class="dot">&#x2022;</span>
+        </a>
+      </div>
+      <div class="dot-wrap testimonials">
+        <a href="#Testimonials" onclick="proceedLoop(true);navdot('2')">
+          <span class="dot">&#x2022;</span>
+        </a>
+      </div>
+      <!-- <div class="dot-wrap projects">
+				<a href="#Projects">
+				<span class="dot-text">Projects</span>
+				<span class="dot">&#x2022;</span>
+				</a>
+			</div> -->
+      <div class="dot-wrap talk">
+        <a href="#Talk" onclick="proceedLoop(false);navdot('6')">
+          <span class="dot">&#x2022;</span>
+        </a>
+      </div>
+    </div>
+    <div class="mobile-only mobile-headers">
+      <h3 id="mobileAbout">About</h3>
+      <h3 id="mobileTestimonials">Testimonials</h3>
+      <h3 id="mobileTalk">Talk</h3>
     </div>
     <div class="logo" style="text-align: center; align-content: center">
       <img class="main-logo" src="./assets/nof1Cropped.png" />
@@ -836,22 +864,31 @@
         if (i !== 0) p.style.opacity = "0";
         p.style.transition = "opacity 0.6s ease-in-out";
         p.style.position = "absolute";
-        p.style.width = "100%";
+        //p.style.width = "100%";
       });
 
       function dotCheck(ind) {
         document.querySelectorAll(".dot-wrap").forEach(function (d) {
           d.classList.remove("mimic-hover");
+        
+        });
+        document.querySelectorAll(".mobile-headers h3").forEach(function(h) {
+          h.style.display = 'none';
         });
         if (ind == 1) {
+          document.getElementById('mobileAbout').style.display = 'block';
           //document
           //  .querySelector(".dot-wrap.about")
           //  .classList.add("mimic-hover");
         } else if (ind > 1 && ind <= 5) {
+          document.getElementById('mobileTestimonials').style.display = 'block';
+
           //document
           //  .querySelector(".dot-wrap.testimonials")
           //  .classList.add("mimic-hover");
         } else if (ind >= 6) {
+          document.getElementById('mobileTalk').style.display = 'block';
+
           //document.querySelector(".dot-wrap.talk").classList.add("mimic-hover");
         }
       }
