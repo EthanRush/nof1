@@ -60,13 +60,13 @@
   <body cz-shortcut-listen="true">
     <div id="nav-dots">
       <div class="dot-wrap about">
-        <a href="#About" onclick="navdot('1')">
+        <a href="#About" onclick="proceedLoop(false);navdot('1')">
           <span class="dot-text">About</span>
           <span class="dot">&#x2022;</span>
         </a>
       </div>
       <div class="dot-wrap testimonials">
-        <a href="#Testimonials" onclick="navdot('2')">
+        <a href="#Testimonials" onclick="proceedLoop(true);navdot('2')">
           <span class="dot-text">Testimonials</span>
           <span class="dot">&#x2022;</span>
         </a>
@@ -78,7 +78,7 @@
 				</a>
 			</div> -->
       <div class="dot-wrap talk">
-        <a href="#Talk" onclick="navdot('6')">
+        <a href="#Talk" onclick="proceedLoop(false);navdot('6')">
           <span class="dot-text">Let's Talk</span>
           <span class="dot">&#x2022;</span>
         </a>
@@ -115,8 +115,8 @@
           </p>
 
           <p class="new-text-section">
-            Christina Wire, VP Global Operations<span class="bold"
-              > YouTube</span
+            Christina Wire, VP Global Operations<span class="bold">
+              YouTube</span
             >
             "The insights I gleaned from our work were transformational. To say
             that Chatham challenged my dominant thinking and inspired my team to
@@ -135,21 +135,20 @@
             find their way."
           </p>
 
-          <p class="new-text-section">
+          <p class="new-text-section final">
             If you're looking for a fast-moving partner who prioritizes action
             and progress over slides and roadmaps, an alternative to the canned
             solutions of big firms, a partner with charisma who speaks honestly
             without fear or favor, and someone who values quality and impact
-            over checking the box,
+            over checking the box... <a
+            href="https://www.linkedin.com/in/chatham-sullivan-3519b370"
+            target="_blank"
+            >LET'S TALK</a
+          >
           </p>
 
-          <p class="new-text-section final">
-            <a
-              href="https://www.linkedin.com/in/chatham-sullivan-3519b370"
-              target="_blank"
-              >LET'S TALK</a
-            >
-          </p>
+
+          
         </div>
       </div>
     </div>
@@ -851,6 +850,12 @@
         }
       }
 
+      let proceedLoopVar = false;
+
+      function proceedLoop(boolVal) {
+        proceedLoopVar = boolVal;
+      }
+
       function navdot(ind) {
         // Fade out the current text
         textSections[currentIndex].style.opacity = "0";
@@ -862,25 +867,33 @@
           console.log("Old index:", currentIndex);
 
           // Update to the new index and perform any necessary dot checks
+          
           currentIndex = ind;
+          
           console.log("New index:", currentIndex);
+          console.log("proceed loop", proceedLoopVar);
           dotCheck(currentIndex);
 
           // Prepare the new text element by displaying it and setting its initial opacity to 0
           textSections[currentIndex].style.display = "block";
-          textSections[currentIndex].style.opacity = "0";
+          //textSections[currentIndex].style.opacity = "0";
           tickerContainer.style.display = "block";
 
           // Wait briefly (50ms) before starting the fade-in
           setTimeout(() => {
-            
             textSections[currentIndex].style.opacity = "1";
 
             // After the fade-in, wait 3 seconds before starting the fade-out of the new text
-            if (ind != 7) {
+            if (currentIndex != 6 && currentIndex != 1) {
               setTimeout(() => {
                 // Begin fading out the new text
+                
+                  if (proceedLoopVar == false) {
+                    return;
+                  }
+                  
                 textSections[currentIndex].style.opacity = "0";
+                
 
                 // Once the fade-out is complete (after 600ms), hide the new text
                 setTimeout(() => {
@@ -888,11 +901,15 @@
                   tickerContainer.style.display = "none";
 
                   // All animations are now complete. If the condition is met, progress to the next index.
-                  if (ind >= 2 && ind < 5) {
-                    navdot(parseInt(ind) + 1);
-                  } else if (ind > 5 && ind < 7) {
-                    navdot(parseInt(ind) + 1);
-                  }
+                  if (currentIndex >= 2 && currentIndex < 6) {
+                    if (proceedLoopVar == false) {
+                      return;
+                    }
+                    if (currentIndex == 5) {
+                      currentIndex = 1;
+                    }
+                    navdot(parseInt(currentIndex) + 1);
+                  } 
                 }, 600); // Matches your CSS fade-out duration
               }, 3000);
             } // Wait 3 seconds after fade-in before starting fade-out
