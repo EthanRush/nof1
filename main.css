@@ -82,19 +82,21 @@
   bottom: 0;
   right: 5%;
   justify-content: space-between;
-  height: 30vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   text-align: right;
 }
 .dot-text {
-  font-size: 30px;
+  font-size: clamp(10px, 1.2vw, 80px);
   vertical-align: middle;
   position: sticky;
   line-height: 1;
+  color: white !important;
+  margin-right: clamp(30px, 2.6vw, 120px);
 }
 .dot {
-  font-size: 120px;
+  font-size: clamp(120px, 8vw, 400px);
   line-height: 1;
   margin-top: 0;
   margin-bottom: 0;
@@ -102,24 +104,24 @@
   position: sticky;
 }
 .about,
-.about * {
+.about *:not(.dot-text) {
   color: #ff40ff !important;
   filter: grayscale(100%);
   font-weight: 900;
 }
 .testimonials,
-.testimonials * {
+.testimonials *:not(.dot-text) {
   color: #68ddaa !important;
   filter: grayscale(100%);
   font-weight: 900;
 }
 .projects,
-.projects * {
+.projects *:not(.dot-text) {
   color: black !important;
   font-weight: 900;
 }
 .talk,
-.talk * {
+.talk *:not(.dot-text) {
   color: #ff2500 !important;
   filter: grayscale(100%);
   font-weight: 900;
