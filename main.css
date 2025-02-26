@@ -85,7 +85,7 @@
   height: 50vh;
   display: flex;
   flex-direction: column;
-  text-align: right;
+  text-align: center;
 }
 .dot-text {
   font-size: clamp(10px, 1.2vw, 80px);
@@ -94,6 +94,7 @@
   line-height: 1;
   color: white !important;
   margin-right: clamp(30px, 2.6vw, 120px);
+  display: none;
 }
 .dot {
   font-size: clamp(120px, 8vw, 400px);
@@ -102,6 +103,9 @@
   margin-bottom: 0;
   vertical-align: middle;
   position: sticky;
+  text-rendering: geometricPrecision;
+  display: inline-block;
+ transition: transform .3s ease-in-out;
 }
 .about,
 .about *:not(.dot-text) {
@@ -140,6 +144,10 @@
 .dot-wrap:hover .dot-text,
 .dot-wrap.mimic-hover .dot-text {
   opacity: 1;
+}
+
+.dot-wrap a.grow .dot, .dot-wrap:hover .dot{
+  transform: scale(1.5); 
 }
 
 /*.text-section{  
@@ -296,7 +304,8 @@ button {
 
 .new-text-section.final a{
   pointer-events: all !important;
-
+  color: black;
+  font-weight: 700;
 }
 
 
