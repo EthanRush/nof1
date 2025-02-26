@@ -1,12 +1,17 @@
 @media screen and (max-width: 992px)
  {
+
+    .logo, .logo *{
+        pointer-events: all !important;
+    }
     #ticker-container{
         bottom: auto;
-        height: 30vh;
-        max-height: 30vh;
-        overflow-y: scroll;
+        height: 35vh;
+        max-height: 35vh;
 
     }    
+
+   
     .mobile-only{
         display: block;
     }
@@ -37,9 +42,19 @@
         display: none;
         margin: auto;
         color: black;
+        display: none;
+        opacity: 0;
     }
 
     .new-text-section{
         padding: 10px;
+        max-height: 33vh;
+        overscroll-behavior: contain;
+        pointer-events: all;
+
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* Enables smooth touch scrolling */
+        scroll-behavior: smooth;    
+        pointer-events: all;
       }
 }

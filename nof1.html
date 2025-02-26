@@ -850,14 +850,15 @@
       */
       //document.addEventListener("DOMContentLoaded", function () {
 
-      const minScroll = window.innerWidth * 0.1 + window.innerWidth * 0.0486;
+      //const minScroll = window.innerWidth * 0.1 + window.innerWidth * 0.0486;
       const tickerContainer = document.getElementById("ticker-container");
       const ticker = document.getElementById("ticker");
       const textSections = Array.from(ticker.getElementsByTagName("p"));
       let currentIndex = 0;
-      let lastScrollY = window.scrollY;
-      let accumulatedScroll = 0;
-      const scrollThreshold = window.innerHeight * 0.2; // 5vh
+      //let lastScrollY = window.scrollY;
+      //console.log(lastScrollY);
+      //let accumulatedScroll = 0;
+      //const scrollThreshold = window.innerHeight * 0.2; // 5vh
       //const slideAmount = window.innerHeight * 0.3; // 40vh
       let currentOffset = 0;
       let isAnimating = false;
@@ -963,13 +964,17 @@
                     navdot(parseInt(currentIndex) + 1);
                   }
                 }, 600); // Matches your CSS fade-out duration
-              }, 3000);
+              }, 4500);
             } // Wait 3 seconds after fade-in before starting fade-out
           }, 50);
           // Delay to kick off fade-in
         }, 600); // Wait for the initial fade-out to complete
       }
-      /*
+      
+    
+    
+    
+    /*
             function handleScroll(event) {
               if (!event.deltaY) {
                 return;
