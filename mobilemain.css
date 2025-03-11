@@ -57,4 +57,13 @@
         scroll-behavior: smooth;    
         pointer-events: all;
       }
+
+
+
+
+      @media screen and (orientation: landscape){
+        .main-logo{ width: 40vw; }
+        #mobile-nav-dots { margin:0; }
+        #ticker * { font-size: clamp(16px, 1.3vw, 32px)}
+      }
 }
